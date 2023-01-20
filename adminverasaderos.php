@@ -68,14 +68,14 @@ if ($asaderos && $sentencia->rowCount() > 0) {
                                     <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                                     <div class="divider-custom-line"></div>
                                 </div>
-                                <div class="d-flex justify-content-evenly">
+                                <div class="d-flex justify-content-evenly flex-wrap">
                                     <!-- Portfolio Modal - Lugar-->
                                     <p class="mb-4 lead">Lugar: <?php echo codificarHTML($fila["lugar"]); ?></p>
                                     <!-- Portfolio Modal - Fecha-->
                                     <p class="mb-4 lead">Fecha: <?php echo codificarHTML($fila["fecha"]); ?></p>
                                 </div>
 
-                                <div class="d-flex justify-content-evenly">
+                                <div class="d-flex justify-content-evenly flex-wrap">
                                     <!-- Portfolio Modal - Maxpersonas-->
                                     <p class="mb-4 lead">Máximo de personas: <?php echo codificarHTML($fila["maxpersonas"]); ?></p>
                                     <!-- Portfolio Modal - Precio-->
@@ -85,8 +85,10 @@ if ($asaderos && $sentencia->rowCount() > 0) {
                                 <p class="mb-4 lead"><?php echo codificarHTML($fila["descripcion"]); ?></p>
 
                                 <div class="d-flex justify-content-center">
-                                    <!-- Portfolio Modal - Boton Reservar-->
-                                    <a class="btn btn-primary btn-lg m-2" href="reservar.php?idasadero=<?php echo codificarHTML($fila["id"]); ?>">Reservar</a>
+                                    <!-- Portfolio Modal - Boton Editar-->
+                                    <a class="btn btn-primary btn-lg m-2" href="admineditarasadero.php?id=<?= $fila["id"] ?>&nombre=<?= $fila["nombre"] ?>&lugar=<?=  $fila["lugar"] ?>&fecha=<?= $fila["fecha"] ?>&precio=<?= $fila["precio"] ?>&maxpersonas=<?= $fila["maxpersonas"] ?>&descripcion=<?= $fila["descripcion"] ?>">Editar</a>
+                                    <!-- Portfolio Modal - Boton Editar-->
+                                    <a class="btn btn-danger btn-lg m-2" href="admineliminarasadero.php?id=<?php echo codificarHTML($fila["id"]); ?>">Eliminar</a>
                                 </div>
                             </div>
                         </div>

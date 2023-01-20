@@ -1,9 +1,9 @@
 <?php include "parts/header.php"; 
-error_reporting(0);// PARA QUE NO APAREZCAN EL WARNING Y NOTICE?> 
+error_reporting(0);// PARA QUE NO APAREZCAN EL WARNING Y NOTICE ?>
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
     <div class="container">
-        <a class="navbar-brand" href="#page-top">Asaderos Online</a>
+        <a class="navbar-brand" href="index.php">Asaderos Online</a>
         <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
             <i class="fas fa-bars"></i>
@@ -55,11 +55,11 @@ error_reporting(0);// PARA QUE NO APAREZCAN EL WARNING Y NOTICE?>
     </div>
 </section>
 
-<!-- About Section-->
+<!-- Acerca de Section-->
 <section class="page-section bg-primary text-white mb-0" id="about">
     <div class="container">
         <!-- About Section Heading-->
-        <h2 class="page-section-heading text-center text-uppercase text-white">About</h2>
+        <h2 class="page-section-heading text-center text-uppercase text-white">Acerca de</h2>
         <!-- Icon Divider-->
         <div class="divider-custom divider-light">
             <div class="divider-custom-line"></div>
@@ -68,14 +68,14 @@ error_reporting(0);// PARA QUE NO APAREZCAN EL WARNING Y NOTICE?>
         </div>
         <!-- About Section Content-->
         <div class="row">
-            <div class="col-lg-4 ms-auto"><p class="lead">Freelancer is a free bootstrap theme created by Start Bootstrap. The download includes the complete source files including HTML, CSS, and JavaScript as well as optional SASS stylesheets for easy customization.</p></div>
-            <div class="col-lg-4 me-auto"><p class="lead">You can create your own custom avatar for the masthead, change the icon in the dividers, and add your email address to the contact form to make it fully functional!</p></div>
+            <div class="col-lg-4 ms-auto"><p class="lead">Esta página está hecha por el desarrollador web Edvin, como proyecto para la asignatura DSW.</p></div>
+            <div class="col-lg-4 me-auto"><p class="lead">Se ha creado con HTML, CSS, JavaScript, MySQL y PHP.</p></div>
         </div>
         <!-- About Section Button-->
         <div class="text-center mt-4">
-            <a class="btn btn-xl btn-outline-light" href="https://startbootstrap.com/theme/freelancer/">
+            <a class="btn btn-xl btn-outline-light" href="https://github.com/Edvintrabajo?tab=repositories" target="_blank">
                 <i class="fas fa-download me-2"></i>
-                Free Download!
+                Si quieres ver más proyecto mios, click aquí!
             </a>
         </div>
     </div>
@@ -136,7 +136,7 @@ error_reporting(0);// PARA QUE NO APAREZCAN EL WARNING Y NOTICE?>
                     <!-- an error submitting the form-->
                     <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error al enviar el mensaje!</div></div>
                     <!-- Submit Button-->
-                    <button class="btn btn-primary btn-xl disabled" id="submitButton" type="submit">Enviar</button>
+                    <button class="btn btn-primary btn-xl" id="submitButton" type="submit">Enviar</button>
                 </form>
             </div>
         </div>

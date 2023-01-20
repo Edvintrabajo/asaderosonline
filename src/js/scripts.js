@@ -20,14 +20,28 @@ window.addEventListener('DOMContentLoaded', event => {
         } else {
             navbarCollapsible.classList.add('navbar-shrink')
         }
+    };
 
+    // subNavbar shrink function
+    var subnavbarShrink = function () {
+        const subnavbarCollapsible = document.body.querySelector('#subNav');
+        if (!subnavbarCollapsible) {
+            return;
+        }
+        if (window.scrollY === 0) {
+            subnavbarCollapsible.classList.remove('navbar-shrink')
+        } else {
+            subnavbarCollapsible.classList.add('navbar-shrink')
+        }
     };
 
     // Shrink the navbar 
     navbarShrink();
+    subnavbarShrink();
 
     // Shrink the navbar when page is scrolled
     document.addEventListener('scroll', navbarShrink);
+    document.addEventListener('scroll', subnavbarShrink);
 
     // Activate Bootstrap scrollspy on the main nav element
     const mainNav = document.body.querySelector('#mainNav');

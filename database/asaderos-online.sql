@@ -24,7 +24,6 @@ CREATE TABLE IF NOT EXISTS Usuarios (
     email VARCHAR(100) NOT NULL,
     admin BOOLEAN DEFAULT false,
     creadoen TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    actualizadoen TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
 
@@ -33,10 +32,9 @@ CREATE TABLE IF NOT EXISTS Reservas (
     idasadero INT NOT NULL,
     idusuario INT NOT NULL,
     creadoen TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    actualizadoen TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
-    FOREIGN KEY (idasadero) REFERENCES Asaderos(id),
-    FOREIGN KEY (idusuario) REFERENCES Usuarios(id)
+    FOREIGN KEY (idasadero) REFERENCES Asaderos(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (idusuario) REFERENCES Usuarios(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 /* INSERCIÓN DE DATOS DE PRUEBA */
@@ -48,3 +46,13 @@ INSERT INTO Asaderos (nombre, lugar, fecha, descripcion, precio, maxpersonas) VA
 ('Asadero de prueba 4', 'Calle de prueba 4', '2023-05-05', 'Descripción de prueba 4', 10, 10),
 ('Asadero de prueba 5', 'Calle de prueba 5', '2023-05-05', 'Descripción de prueba 5', 10, 10),
 ('Asadero de prueba 6', 'Calle de prueba 6', '2023-05-05', 'Descripción de prueba 6', 10, 10);
+
+
+INSERT INTO Usuarios (nombre, contrasena, telefono, email, admin) VALUES
+('edvin', 'Edvin12345@', '666666666', 'edvintrabajo@gmail.com', true);
+
+
+INSERT INTO Reservas (idasadero, idusuario) VALUES
+(1, 1),
+(2, 1),
+(3, 1);

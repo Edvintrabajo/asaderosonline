@@ -11404,6 +11404,65 @@ html {
     font-size: 1.5em;
   }
 }
+#subNav {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 700;
+}
+#subNav .navbar-brand {
+  color: #fff;
+}
+#subNav .navbar-nav {
+  margin-top: 1rem;
+}
+#subNav .navbar-nav li.nav-item a.nav-link {
+  color: #fff;
+}
+#subNav .navbar-nav li.nav-item a.nav-link:hover {
+  color: #1abc9c;
+}
+#subNav .navbar-nav li.nav-item a.nav-link:active, #subNav .navbar-nav li.nav-item a.nav-link:focus {
+  color: #fff;
+}
+#subNav .navbar-nav li.nav-item a.nav-link.active {
+  color: #1abc9c;
+}
+#subNav .navbar-toggler {
+  font-size: 80%;
+  padding: 0.8rem;
+}
+
+@media (min-width: 992px) {
+  #subNav {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    transition: padding-top 0.3s, padding-bottom 0.3s;
+  }
+  #subNav .navbar-brand {
+    font-size: 1.75em;
+    transition: font-size 0.3s;
+  }
+  #subNav .navbar-nav {
+    margin-top: 0;
+  }
+  #subNav .navbar-nav > li.nav-item > a.nav-link.active {
+    color: #fff;
+    background: #1abc9c;
+  }
+  #subNav .navbar-nav > li.nav-item > a.nav-link.active:active, #subNav .navbar-nav > li.nav-item > a.nav-link.active:focus, #subNav .navbar-nav > li.nav-item > a.nav-link.active:hover {
+    color: #fff;
+    background: #1abc9c;
+  }
+
+  #subNav.navbar-shrink {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  #subNav.navbar-shrink .navbar-brand {
+    font-size: 1.5em;
+  }
+}
 .form-floating input.form-control,
 .form-floating textarea.form-control {
   font-size: 1.5rem;
