@@ -22,7 +22,7 @@
                 <h4 class="text-uppercase mb-4">Acerca de Asaderos Online</h4>
                 <p class="lead mb-0">
                     Está hecha por un simple desarrollador web llamado
-                    <a href="https://github.com/Edvintrabajo">Edvin</a>
+                    <a href="https://github.com/Edvintrabajo" target="_blank">Edvin</a>
                     .
                 </p>
             </div>

@@ -1,4 +1,5 @@
-<?php include "parts/header.php"; ?>
+<?php include "parts/header.php"; 
+error_reporting(0);// PARA QUE NO APAREZCAN EL WARNING Y NOTICE?> 
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
     <div class="container">
