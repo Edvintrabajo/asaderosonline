@@ -1,5 +1,5 @@
 ﻿# asaderosonline
 
-## Gestor de Asaderos Online Web.
+Gestor de Asaderos Online Web.
 
-## Realizado con HTML, CSS, JavaScript, MySql y PHP.
+Realizado con HTML, CSS, JavaScript, MySql y PHP.
