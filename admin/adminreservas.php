@@ -1,9 +1,9 @@
-<?php include "parts/header.php"; ?>
+<?php include "../parts/adminheader.php"; ?>
 
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="subNav">
     <div class="container">
-        <a class="navbar-brand" href="index.php">Asaderos Online</a>
+        <a class="navbar-brand" href="../index.php">Asaderos Online</a>
         <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
             <i class="fas fa-bars"></i>
