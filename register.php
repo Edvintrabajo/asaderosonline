@@ -1,3 +1,35 @@
+<?php
+session_start();
+
+if(isset($_SESSION['usuario'])) {
+    header("location: index.php");
+}
+
+try {
+    if (isset($_POST["signup"])) {
+        $config = include 'database/config.php';
+        include 'utils/functions.php';
+
+        $resultado = validateregister($_POST["name"], $_POST["pass"], $_POST["re_pass"], $_POST["email"], $_POST["telefono"]);
+        if (!$resultado['error']) {
+            $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
+            $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
+            $consultaSQL = "INSERT INTO usuarios (nombre, contrasena, telefono, email) VALUES (:nombre, :contrasena, :telefono, :email)";
+            $sentencia = $conexion->prepare($consultaSQL);
+            $sentencia->bindParam(":nombre", $_POST["name"]);
+            $sentencia->bindParam(":contrasena", password_hash($_POST["pass"], PASSWORD_DEFAULT));
+            $sentencia->bindParam(":telefono", $_POST["telefono"]);
+            $sentencia->bindParam(":email", $_POST["email"]);
+            $sentencia->execute();
+            header("Location: index.php");
+            }
+        }
+    } catch (PDOException $error) {
+    $resultado['error'] = true;
+    $resultado['mensaje'] = 'Error al registarse';
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,7 +38,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Crear una cuenta</title>
 
-    
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="src/fonts/material-icon/css/material-design-iconic-font.min.css">
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="src/assets/favicon.ico" />
     <!-- Font Awesome icons (free version)-->
@@ -14,14 +47,25 @@
     <!-- Google fonts-->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
-    <!-- Font Icon -->
-    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
     <!-- Main css -->
     <link rel="stylesheet" href="src/css/signstyles.css">
 </head>
 <body>
 
     <div class="main">
+        <!-- MENSAJE DE ERROR -->
+        <?php
+        if(isset($resultado) && $resultado['error']) {
+        ?>
+            <div class="container">
+                <div class="alert alert-danger" role="alert">
+                        <?= $resultado['mensaje'] ?>
+                    </div>
+                </div>
+            </div>
+        <?php
+        }
+        ?>
         <section class="signup">
             <div class="container">
                 <div class="signup-content">
@@ -37,7 +81,7 @@
                                 <input type="email" name="email" id="email" placeholder="Tu email"/>
                             </div>
                             <div class="form-group">
-                                <label for="telefono"><i class="zmdi"></i></label>
+                                <label for="telefono"><i class="zmdi zmdi-phone"></i></label>
                                 <input type="telefono" name="telefono" id="telefono" placeholder="Tu telefono"/>
                             </div>
                             <div class="form-group">
@@ -55,7 +99,7 @@
                     </div>
                     <div class="signup-image">
                         <figure><img src="src/assets/img/signup-image.jpg" alt="sing up image"></figure>
-                        <a href="login.html" class="signup-image-link">Ya tengo cuenta</a>
+                        <a href="login.php" class="signup-image-link">Ya tengo cuenta</a>
                     </div>
                 </div>
             </div>

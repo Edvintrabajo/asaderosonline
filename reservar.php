@@ -1,4 +1,5 @@
 <?php
+session_start();
 $resultado = [
     'error' => false,
     'mensaje' => 'El asadero ' . $_POST['nombre'] . ' ha sido agregado con éxito'
@@ -12,7 +13,7 @@ try {
     
     $reserva = array(
         "idasadero" => $_GET['idasadero'],
-        "idusuario" => 1
+        "idusuario" => $_SESSION['usuario']['id']
     );
 
     $consultaSQL = "INSERT INTO reservas (idasadero, idusuario)";

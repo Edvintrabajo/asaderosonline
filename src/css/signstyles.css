@@ -185,9 +185,32 @@ h2 {
   font-family: Poppins;
   font-size: 36px; }
 
+.alert {
+  position: relative;
+  padding: 1rem 1rem;
+  margin-bottom: 1rem;
+  border: 0.125rem solid transparent;
+  border-radius: 0.5rem;
+}
+
+.alert-danger {
+  color: #842029;
+  background-color: #f8d7da;
+  border-color: #f5c2c7;
+}
+.alert-danger .alert-link {
+  color: #6a1a21;
+}
+  
 .main {
   background: #f8f8f8;
   padding: 150px 0 0 0; }
+
+@media only screen and (max-width: 767px) {
+  .main {
+    padding: 0; 
+  }
+}
 
 .clear {
   clear: both; }
@@ -248,9 +271,6 @@ body {
   -webkit-transform: translate(-50%, -50%);
   -o-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%); }
-
-.signup {
-  margin-bottom: 150px; }
 
 .signup-content {
   padding: 75px 0; }

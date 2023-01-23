@@ -1,5 +1,41 @@
+<?php
+session_start();
+
+if(isset($_SESSION['usuario'])) {
+    header("location: index.php");
+}
+
+try {
+    if (isset($_POST["signin"])) {
+        $resultado = [
+            'error' => false,
+            'mensaje' => 'Datos introducidos incorrectos'
+        ];
+        $config = include 'database/config.php';
+    
+        $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
+        $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
+        $consultaSQL = "SELECT * FROM usuarios WHERE nombre = :nombre";
+        $sentencia = $conexion->prepare($consultaSQL);
+        $sentencia->bindParam(":nombre", $_POST["your_name"]);
+        $sentencia->execute();
+        $usuario = $sentencia->fetch(PDO::FETCH_ASSOC);
+        if ($usuario && password_verify($_POST["your_pass"], $usuario['contrasena'])) {
+            $_SESSION['usuario'] = $usuario;
+            header("Location: index.php");
+        } else {
+            $resultado['error'] = true;
+        }
+    }
+} catch (PDOException $error) {
+    $resultado['error'] = true;
+    $resultado['mensaje'] = 'Error al iniciar sesión';
+}
+
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,17 +57,30 @@
 <body>
 
     <div class="main">
+        <!-- MENSAJE DE ERROR -->
+        <?php
+        if(isset($resultado) && $resultado['error']) {
+        ?>
+            <div class="container">
+                <div class="alert alert-danger" role="alert">
+                        <?= $resultado['mensaje'] ?>
+                    </div>
+                </div>
+            </div>
+        <?php
+        }
+        ?>
         <section class="sign-in">
             <div class="container">
                 <div class="signin-content">
                     <div class="signin-image">
                         <figure><img src="src/assets/img/signin-image.jpg" alt="sing up image"></figure>
-                        <a href="register.html" class="signup-image-link">Crear una cuenta</a>
+                        <a href="register.php" class="signup-image-link">Crear una cuenta</a>
                     </div>
 
                     <div class="signin-form">
                         <h2 class="form-title">Iniciar sesión</h2>
-                        <form method="POST" class="register-form" id="login-form">
+                        <form method="POST" action="<?php echo $_SERVER['PHP_SELF'];?>" class="register-form" id="login-form">
                             <div class="form-group">
                                 <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
                                 <input type="text" name="your_name" id="your_name" placeholder="Tu nombre"/>

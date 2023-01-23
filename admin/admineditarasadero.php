@@ -1,4 +1,13 @@
 <?php
+session_start();
+if(!isset($_SESSION['usuario'])) {
+    header("location: ../index.php");
+} else {
+    if(!$_SESSION['usuario']['admin']) {
+        header("location: ../index.php");
+    }
+}
+
 if (isset($_POST["submit"])) {
     $resultado = [
         'error' => false,
