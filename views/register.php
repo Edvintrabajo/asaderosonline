@@ -14,18 +14,39 @@ try {
         if (!$resultado['error']) {
             $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
             $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
-            $consultaSQL = "INSERT INTO usuarios (nombre, contrasena, telefono, email) VALUES (:nombre, :contrasena, :telefono, :email)";
-            $password_hash = password_hash($_POST["pass"], PASSWORD_DEFAULT);
+
+            $consultaSQL = "SELECT * FROM usuarios WHERE email = :emailaux";
             $sentencia = $conexion->prepare($consultaSQL);
-            $sentencia->bindParam(":nombre", $_POST["name"]);
-            $sentencia->bindParam(":contrasena", $password_hash);
-            $sentencia->bindParam(":telefono", $_POST["telefono"]);
-            $sentencia->bindParam(":email", $_POST["email"]);
+            $sentencia->bindParam(":emailaux", $_POST["email"]);
             $sentencia->execute();
-            header("Location: index.php");
+            $resultadoaux = $sentencia->fetchAll();
+
+            $consultaSQL = "SELECT * FROM usuarios WHERE telefono = :telefonoaux";
+            $sentencia = $conexion->prepare($consultaSQL);
+            $sentencia->bindParam(":telefonoaux", $_POST["telefono"]);
+            $sentencia->execute();
+            $resultadoaux2 = $sentencia->fetchAll();
+
+            if ($resultadoaux) {
+                $resultado['error'] = true;
+                $resultado['mensaje'] = 'El email ya existe';
+            } else if ($resultadoaux2) {
+                $resultado['error'] = true;
+                $resultado['mensaje'] = 'El telefono ya existe';
+            } else {
+                $consultaSQL = "INSERT INTO usuarios (nombre, contrasena, telefono, email) VALUES (:nombre, :contrasena, :telefono, :email)";
+                $password_hash = password_hash($_POST["pass"], PASSWORD_DEFAULT);
+                $sentencia = $conexion->prepare($consultaSQL);
+                $sentencia->bindParam(":nombre", $_POST["name"]);
+                $sentencia->bindParam(":contrasena", $password_hash);
+                $sentencia->bindParam(":telefono", $_POST["telefono"]);
+                $sentencia->bindParam(":email", $_POST["email"]);
+                $sentencia->execute();
+                header("Location: index.php");
             }
         }
-    } catch (PDOException $error) {
+    }
+} catch (PDOException $error) {
     $resultado['error'] = true;
     $resultado['mensaje'] = 'Error al registarse';
 }

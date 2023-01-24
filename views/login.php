@@ -15,9 +15,9 @@ try {
     
         $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
         $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
-        $consultaSQL = "SELECT * FROM usuarios WHERE nombre = :nombre";
+        $consultaSQL = "SELECT * FROM usuarios WHERE email = :email";
         $sentencia = $conexion->prepare($consultaSQL);
-        $sentencia->bindParam(":nombre", $_POST["your_name"]);
+        $sentencia->bindParam(":email", $_POST["your_email"]);
         $sentencia->execute();
         $usuario = $sentencia->fetch(PDO::FETCH_ASSOC);
         if ($usuario && password_verify($_POST["your_pass"], $usuario['contrasena'])) {
@@ -25,6 +25,7 @@ try {
             header("Location: index.php");
         } else {
             $resultado['error'] = true;
+            $resultado['mensaje'] = 'Datos introducidos incorrectos';
         }
     }
 } catch (PDOException $error) {
@@ -82,8 +83,8 @@ try {
                         <h2 class="form-title">Iniciar sesión</h2>
                         <form method="POST" action="<?php echo $_SERVER['PHP_SELF'];?>" class="register-form" id="login-form">
                             <div class="form-group">
-                                <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="your_name" id="your_name" placeholder="Tu nombre"/>
+                                <label for="your_email"><i class="zmdi zmdi-email"></i></label>
+                                <input type="email" name="your_email" id="your_email" placeholder="Tu email"/>
                             </div>
                             <div class="form-group">
                                 <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
