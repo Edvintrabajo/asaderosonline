@@ -19,23 +19,68 @@ if(isset($_POST['submit'])){
         $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
         $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
 
-        
-        $asadero = array(
-            "nombre" => $_POST['nombre'],
-            "lugar" => $_POST['lugar'],
-            "fecha" => $_POST['fecha'],
-            "descripcion" => $_POST['descripcion'],
-            "precio" => $_POST['precio'],
-            "maxpersonas" => $_POST['maxpersonas']
-        );
-
-        $consultaSQL = "INSERT INTO asaderos (nombre, lugar, fecha, descripcion, precio, maxpersonas)";
-        $consultaSQL .= "VALUES (:" . implode(", :", array_keys($asadero)) . ")";
-
-        $sentencia = $conexion->prepare($consultaSQL);
-        $sentencia->execute($asadero);
-        header("location: adminasaderos.php");
-        
+        // VALIDAR QUE LA FECHA SEA DESPUES DE HOY
+        if(strtotime($_POST['fecha']) < strtotime(date("Y-m-d"))) {
+            $resultado['error'] = true;
+            $resultado['mensaje'] = 'La fecha debe ser posterior a hoy';
+        } else {
+            // VALIDAR QUE EL NOMBRE NO ESTE VACIO
+            if(empty($_POST['nombre'])) {
+                $resultado['error'] = true;
+                $resultado['mensaje'] = 'El nombre del asadero no puede estar vacío';
+            } else {
+                // VALIDAR QUE EL LUGAR NO ESTE VACIO
+                if(empty($_POST['lugar'])) {
+                    $resultado['error'] = true;
+                    $resultado['mensaje'] = 'El lugar del asadero no puede estar vacío';
+                } else {
+                    // VALIDAR QUE LA DESCRIPCION NO ESTE VACIA
+                    if(empty($_POST['descripcion'])) {
+                        $resultado['error'] = true;
+                        $resultado['mensaje'] = 'La descripción del asadero no puede estar vacía';
+                    } else {
+                        // VALIDAR QUE EL PRECIO SEA MAYOR A 0
+                        if($_POST['precio'] <= 0) {
+                            $resultado['error'] = true;
+                            $resultado['mensaje'] = 'El precio debe ser mayor a 0';
+                        } else {
+                            // VALIDAR QUE EL MAXIMO DE PERSONAS SEA MAYOR A 0
+                            if($_POST['maxpersonas'] <= 0) {
+                                $resultado['error'] = true;
+                                $resultado['mensaje'] = 'El máximo de personas debe ser mayor a 0';
+                            } else {
+                                // VALIDAR QUE EL NOMBRE NO ESTE REPETIDO
+                                $consultaSQL = "SELECT * FROM asaderos WHERE nombre = :nombre";
+                                $sentencia = $conexion->prepare($consultaSQL);
+                                $sentencia->bindParam(":nombre", $_POST['nombre']);
+                                $sentencia->execute();
+                                $asadero = $sentencia->fetch(PDO::FETCH_ASSOC);
+                                if($asadero) {
+                                    $resultado['error'] = true;
+                                    $resultado['mensaje'] = 'El nombre del asadero ya existe';
+                                } else {
+                                    $asadero = array(
+                                        "nombre" => $_POST['nombre'],
+                                        "lugar" => $_POST['lugar'],
+                                        "fecha" => $_POST['fecha'],
+                                        "descripcion" => $_POST['descripcion'],
+                                        "precio" => $_POST['precio'],
+                                        "maxpersonas" => $_POST['maxpersonas']
+                                    );
+                            
+                                    $consultaSQL = "INSERT INTO asaderos (nombre, lugar, fecha, descripcion, precio, maxpersonas)";
+                                    $consultaSQL .= "VALUES (:" . implode(", :", array_keys($asadero)) . ")";
+                            
+                                    $sentencia = $conexion->prepare($consultaSQL);
+                                    $sentencia->execute($asadero);
+                                    header("location: adminasaderos.php");
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     } catch(PDOException $error) {
         $resultado['error'] = true;
         $resultado['mensaje'] = $error->getMessage();
@@ -63,23 +108,6 @@ if(isset($_POST['submit'])){
     </div>
 </nav>
 
-<!-- MENSAJE DE ERROR -->
-<?php
-if(isset($resultado) && $resultado['error']) {
-?>
-    <div class="container mt-3">
-        <div class="row">
-            <div class="col-md-12">
-               <div class="alert alert-danger" role="alert">
-                    <?= $resultado['mensaje'] ?>
-                </div>
-            </div>
-        </div>
-    </div>
-<?php
-}
-?>
-
 <!-- Asaderos Section-->
 <section class="page-section portfolio mt-5" id="asaderos">
     <div class="container">
@@ -94,6 +122,22 @@ if(isset($resultado) && $resultado['error']) {
         <div class="d-flex justify-content-center mb-3">
             <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#crear">Crear</a>
         </div>
+        <!-- MENSAJE DE ERROR -->
+        <?php
+        if(isset($resultado) && $resultado['error']) {
+        ?>
+            <div class="container mt-3">
+                <div class="row">
+                    <div class="col-md-12">
+                    <div class="alert alert-danger" role="alert">
+                            <?= $resultado['mensaje'] ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php
+        }
+        ?>
         <!-- Asaderos Grid Items-->
         <div class="row justify-content-center">
             <?php include "adminverasaderos.php"; ?>
