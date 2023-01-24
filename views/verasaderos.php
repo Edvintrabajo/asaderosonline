@@ -1,8 +1,8 @@
 <?php
-include 'utils/functions.php';
+include '../utils/functions.php';
 
 $error = false;
-$config = include 'database/config.php';
+$config = include '../database/config.php';
 
 try {
     $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
@@ -86,7 +86,7 @@ if ($asaderos && $sentencia->rowCount() > 0) {
 
                                 <div class="d-flex justify-content-center">
                                     <!-- Portfolio Modal - Boton Reservar-->
-                                    <a class="btn btn-primary btn-lg m-2" href="reservar.php?idasadero=<?php echo codificarHTML($fila["id"]); ?>">Reservar</a>
+                                    <a class="btn btn-primary btn-lg m-2" href="index.php?reservar&idasadero=<?php echo codificarHTML($fila["id"]); ?>">Reservar</a>
                                 </div>
                             </div>
                         </div>

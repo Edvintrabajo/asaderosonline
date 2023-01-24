@@ -7,17 +7,18 @@ if(isset($_SESSION['usuario'])) {
 
 try {
     if (isset($_POST["signup"])) {
-        $config = include 'database/config.php';
-        include 'utils/functions.php';
+        $config = include '../database/config.php';
+        include '../utils/functions.php';
 
         $resultado = validateregister($_POST["name"], $_POST["pass"], $_POST["re_pass"], $_POST["email"], $_POST["telefono"]);
         if (!$resultado['error']) {
             $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
             $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
             $consultaSQL = "INSERT INTO usuarios (nombre, contrasena, telefono, email) VALUES (:nombre, :contrasena, :telefono, :email)";
+            $password_hash = password_hash($_POST["pass"], PASSWORD_DEFAULT);
             $sentencia = $conexion->prepare($consultaSQL);
             $sentencia->bindParam(":nombre", $_POST["name"]);
-            $sentencia->bindParam(":contrasena", password_hash($_POST["pass"], PASSWORD_DEFAULT));
+            $sentencia->bindParam(":contrasena", $password_hash);
             $sentencia->bindParam(":telefono", $_POST["telefono"]);
             $sentencia->bindParam(":email", $_POST["email"]);
             $sentencia->execute();
@@ -39,16 +40,16 @@ try {
     <title>Crear una cuenta</title>
 
     <!-- Font Icon -->
-    <link rel="stylesheet" href="src/fonts/material-icon/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="../src/fonts/material-icon/css/material-design-iconic-font.min.css">
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="src/assets/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="../src/assets/favicon.ico" />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
     <!-- Main css -->
-    <link rel="stylesheet" href="src/css/signstyles.css">
+    <link rel="stylesheet" href="../src/css/signstyles.css">
 </head>
 <body>
 
@@ -98,7 +99,7 @@ try {
                         </form>
                     </div>
                     <div class="signup-image">
-                        <figure><img src="src/assets/img/signup-image.jpg" alt="sing up image"></figure>
+                        <figure><img src="../src/assets/img/signup-image.jpg" alt="sing up image"></figure>
                         <a href="login.php" class="signup-image-link">Ya tengo cuenta</a>
                     </div>
                 </div>

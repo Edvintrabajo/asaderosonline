@@ -3,8 +3,41 @@ session_start();
 if(!isset($_SESSION['usuario'])){
     header("location: login.php");
 }
-include "parts/header.php";
-error_reporting(0);// PARA QUE NO APAREZCAN EL WARNING Y NOTICE ?>
+
+if(isset($_GET['cerrarsession'])){
+    session_destroy();
+    header("location: login.php");
+}
+
+if(isset($_GET['reservar'])) {
+    $resultado = [
+        'error' => false,
+        'mensaje' => 'El asadero ' . $_POST['nombre'] . ' ha sido agregado con éxito'
+    ];
+    $config = include "../database/config.php";
+    
+    try {
+        $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
+        $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
+    
+        
+        $reserva = array(
+            "idasadero" => $_GET['idasadero'],
+            "idusuario" => $_SESSION['usuario']['id']
+        );
+    
+        $consultaSQL = "INSERT INTO reservas (idasadero, idusuario)";
+        $consultaSQL .= "VALUES (:" . implode(", :", array_keys($reserva)) . ")";
+    
+        $sentencia = $conexion->prepare($consultaSQL);
+        $sentencia->execute($reserva);
+        header("location: ../views/index.php");
+        
+    } catch(PDOException $error) {
+        header("location: ../views/index.php");
+    }
+}
+include "../parts/header.php";?>
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
     <div class="container">
@@ -18,7 +51,7 @@ error_reporting(0);// PARA QUE NO APAREZCAN EL WARNING Y NOTICE ?>
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#asaderos">Asaderos</a></li>
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">Acerca de</a></li>
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contacto">Contacto</a></li>
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="cerrarsesion.php">Cerrar Sesión</a></li>
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="index.php?cerrarsession">Cerrar Sesión</a></li>
             </ul>
         </div>
     </div>
@@ -28,7 +61,7 @@ error_reporting(0);// PARA QUE NO APAREZCAN EL WARNING Y NOTICE ?>
 <header class="masthead text-white text-center">
     <div class="shadow container d-flex align-items-center flex-column">
         <!-- Masthead Avatar Image-->
-        <img class="masthead-avatar mb-5" src="src/assets/img/avataaars.svg" alt="..." />
+        <img class="masthead-avatar mb-5" src="../src/assets/img/avataaars.svg" alt="..." />
         <!-- Masthead Heading-->
         <h1 class="masthead-heading text-uppercase mb-0">Asaderos Online</h1>
         <!-- Icon Divider-->
@@ -149,4 +182,4 @@ error_reporting(0);// PARA QUE NO APAREZCAN EL WARNING Y NOTICE ?>
     </div>
 </section>
 
-<?php include "parts/footer.php"; ?>
+<?php include "../parts/footer.php"; ?>

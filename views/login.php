@@ -11,7 +11,7 @@ try {
             'error' => false,
             'mensaje' => 'Datos introducidos incorrectos'
         ];
-        $config = include 'database/config.php';
+        $config = include '../database/config.php';
     
         $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
         $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
@@ -43,16 +43,16 @@ try {
     <title>Iniciar sesión</title>
 
     <!-- Font Icon -->
-    <link rel="stylesheet" href="src/fonts/material-icon/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="../src/fonts/material-icon/css/material-design-iconic-font.min.css">
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="src/assets/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="../src/assets/favicon.ico" />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
     <!-- Main css -->
-    <link rel="stylesheet" href="src/css/signstyles.css">
+    <link rel="stylesheet" href="../src/css/signstyles.css">
 </head>
 <body>
 
@@ -74,7 +74,7 @@ try {
             <div class="container">
                 <div class="signin-content">
                     <div class="signin-image">
-                        <figure><img src="src/assets/img/signin-image.jpg" alt="sing up image"></figure>
+                        <figure><img src="../src/assets/img/signin-image.jpg" alt="sing up image"></figure>
                         <a href="register.php" class="signup-image-link">Crear una cuenta</a>
                     </div>
 

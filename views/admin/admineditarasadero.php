@@ -13,7 +13,7 @@ if (isset($_POST["submit"])) {
         'error' => false,
         'mensaje' => 'El asadero ' . $_POST['nombre'] . ' ha sido actualizado con éxito'
     ];
-    $config = include '../database/config.php';
+    $config = include '../../database/config.php';
 
     try {
         $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
@@ -44,7 +44,7 @@ if (isset($_POST["submit"])) {
 }
 ?>
 
-<?php include "../parts/adminheader.php"; ?>
+<?php include "../../parts/adminheader.php"; ?>
 
 <?php
 if(isset($resultado)) {
