@@ -20,7 +20,7 @@ try {
     $sentencia = $conexion->prepare($consultaSQL);
     $sentencia->execute();
 
-    $asaderos = $sentencia->fetchAll();
+    $reservas = $sentencia->fetchAll();
 } catch (PDOException $error) {
     $error = $error->getMessage();
 }
@@ -39,8 +39,8 @@ if ($error) {
 <?php
 }
 
-if ($asaderos && $sentencia->rowCount() > 0) {
-    foreach ($asaderos as $fila) {
+if ($reservas && $sentencia->rowCount() > 0) {
+    foreach ($reservas as $fila) {
 ?>
     <!-- Reserva Item-->
     <div class="col-md-6 col-lg-4 mb-5">

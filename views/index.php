@@ -91,6 +91,11 @@ include "../parts/header.php";?>
         <div class="row justify-content-center">
             <?php include "verasaderos.php"; ?>
         </div>
+
+        <!-- Mis Reservas -->
+        <div class="d-flex justify-content-center">
+            <a class="btn btn-primary btn-lg m-2 p-3" href="misreservas.php">Mis Reservas</a>
+        </div>
     </div>
 </section>
 
