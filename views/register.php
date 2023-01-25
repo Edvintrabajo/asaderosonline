@@ -1,6 +1,15 @@
 <?php
 /**
- * Vista de Registro
+ * File: register.php
+ * Date: 27/04/2021
+ * Description: Vista del formulario de registro
+ * Author: Edvin Freyer Ortega
+ * Email: EdvinTrabajo@gmail.com
+ * Github: https://github.com/Edvintrabajo
+ * 
+ * @package views
+ * @version 1.0
+ * @since 1.0
  */
 
 /**

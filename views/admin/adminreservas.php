@@ -1,6 +1,15 @@
 <?php
 /**
- * Vista del Admin de Reservas
+ * File: adminreservas.php
+ * Date: 27/04/2021
+ * Description: Vista de administración de reservas
+ * Author: Edvin Freyer Ortega
+ * Email: EdvinTrabajo@gmail.com
+ * Github: https://github.com/Edvintrabajo
+ * 
+ * @package admin-views
+ * @version 1.0
+ * @since 1.0
  */
 
 /**

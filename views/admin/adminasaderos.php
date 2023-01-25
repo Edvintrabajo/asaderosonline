@@ -1,6 +1,15 @@
 <?php
 /**
- * Vista del Admin de Asaderos
+ * File: adminasaderos.php
+ * Date: 27/04/2021
+ * Description: Vista de administración de asaderos
+ * Author: Edvin Freyer Ortega
+ * Email: EdvinTrabajo@gmail.com
+ * Github: https://github.com/Edvintrabajo
+ * 
+ * @package admin-views
+ * @version 1.0
+ * @since 1.0
  */
 
 /**

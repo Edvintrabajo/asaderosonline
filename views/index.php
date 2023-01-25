@@ -1,6 +1,15 @@
-<?php 
+<?php
 /**
- * Vista del index
+ * File: index.php
+ * Date: 27/04/2021
+ * Description: Vista del index
+ * Author: Edvin Freyer Ortega
+ * Email: EdvinTrabajo@gmail.com
+ * Github: https://github.com/Edvintrabajo
+ * 
+ * @package views
+ * @version 1.0
+ * @since 1.0
  */
 
 /**

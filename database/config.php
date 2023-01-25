@@ -1,7 +1,17 @@
 <?php
 /**
- * Configuración de la base de datos utilizando dotenv
+ * File: config.php
+ * Date: 27/04/2021
+ * Description: Configuración de la base de datos
+ * Author: Edvin Freyer Ortega
+ * Email: EdvinTrabajo@gmail.com
+ * Github: https://github.com/Edvintrabajo
+ * 
+ * @package config
+ * @version 1.0
+ * @since 1.0
  */
+
 require  __DIR__ .'/../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();

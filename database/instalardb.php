@@ -1,4 +1,17 @@
 <?php
+/**
+ * File: instalardb.php
+ * Date: 27/04/2021
+ * Description: Instalación de la base de datos
+ * Author: Edvin Freyer Ortega
+ * Email: EdvinTrabajo@gmail.com
+ * Github: https://github.com/Edvintrabajo
+ * 
+ * @package config-script
+ * @version 1.0
+ * @since 1.0
+ */
+
 $config = include 'config.php';
 
 /**

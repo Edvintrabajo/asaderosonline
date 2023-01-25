@@ -1,6 +1,15 @@
 <?php
 /**
- * Admin Ver Reservas
+ * File: adminverreservas.php
+ * Date: 27/04/2021
+ * Description: Ver reservas
+ * Author: Edvin Freyer Ortega
+ * Email: EdvinTrabajo@gmail.com
+ * Github: https://github.com/Edvintrabajo
+ * 
+ * @package admin-mini-views
+ * @version 1.0
+ * @since 1.0
  */
 
 /**

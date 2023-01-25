@@ -1,6 +1,15 @@
 <?php
 /**
- * Admin Ver Usuarios
+ * File: adminverusuarios.php
+ * Date: 27/04/2021
+ * Description: Ver usuarios
+ * Author: Edvin Freyer Ortega
+ * Email: EdvinTrabajo@gmail.com
+ * Github: https://github.com/Edvintrabajo
+ * 
+ * @package admin-mini-views
+ * @version 1.0
+ * @since 1.0
  */
 
 /**

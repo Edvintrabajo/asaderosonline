@@ -1,4 +1,16 @@
 <?php
+/**
+ * File: functions.php
+ * Date: 27/04/2021
+ * Description: Funciones para el proyecto
+ * Author: Edvin Freyer Ortega
+ * Email: EdvinTrabajo@gmail.com
+ * Github: https://github.com/Edvintrabajo
+ * 
+ * @package functions
+ * @version 1.0
+ * @since 1.0
+ */
 
 /**
  * Función para codificar el HTML

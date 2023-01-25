@@ -1,6 +1,15 @@
 <?php
 /**
- * Admin Eliminar Reserva
+ * File: adminaeliminarreserva.php
+ * Date: 27/04/2021
+ * Description: Admin eliminar reserva
+ * Author: Edvin Freyer Ortega
+ * Email: EdvinTrabajo@gmail.com
+ * Github: https://github.com/Edvintrabajo
+ * 
+ * @package admin-scripts
+ * @version 1.0
+ * @since 1.0
  */
 
 /**
