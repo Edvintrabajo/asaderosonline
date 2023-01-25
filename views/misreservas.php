@@ -83,7 +83,6 @@ if ($error) {
                         <div class="card img-fluid">
                             <div class="card-body text-center d-flex flex-column justify-content-center">
                                 <h5 class="card-title p-2"><?php echo codificarHTML($fila["idasadero"]); ?></h5>
-                                <p class="card-text"><?php echo codificarHTML($fila["idusuario"]); ?></p>
                                 <p class="card-text"><?php echo codificarHTML($fila["creadoen"]); ?></p>
                             </div>
                         </div>

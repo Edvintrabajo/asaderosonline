@@ -12,27 +12,48 @@ if(isset($_GET['cerrarsession'])){
 if(isset($_GET['reservar'])) {
     $resultado = [
         'error' => false,
-        'mensaje' => 'El asadero ' . $_POST['nombre'] . ' ha sido agregado con éxito'
+        'mensaje' => ''
     ];
     $config = include "../database/config.php";
     
     try {
         $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
         $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
-    
-        
-        $reserva = array(
-            "idasadero" => $_GET['idasadero'],
-            "idusuario" => $_SESSION['usuario']['id']
-        );
-    
-        $consultaSQL = "INSERT INTO reservas (idasadero, idusuario)";
-        $consultaSQL .= "VALUES (:" . implode(", :", array_keys($reserva)) . ")";
-    
+
+        $consultaSQL = "SELECT * FROM reservas WHERE idasadero = :idasadero AND idusuario = :idusuario";
         $sentencia = $conexion->prepare($consultaSQL);
-        $sentencia->execute($reserva);
-        header("location: ../views/index.php");
-        
+        $sentencia->bindParam(":idasadero", $_GET['idasadero']);
+        $sentencia->bindParam(":idusuario", $_SESSION['usuario']['id']);
+        $sentencia->execute();
+        $reserva = $sentencia->fetchall();
+        if($reserva){
+            $resultado['error'] = true;
+            $resultado['mensaje'] = 'Ya tienes una reserva en este asadero';
+        } else {
+            $consultaSQL = "SELECT maxpersonas FROM asaderos WHERE id = :idasadero";
+            $sentencia = $conexion->prepare($consultaSQL);
+            $sentencia->bindParam(":idasadero", $_GET['idasadero']);
+            $sentencia->execute();
+            $asadero = $sentencia->fetch();
+            
+            $consultaSQL = "SELECT count(asaderos.id) as reservas FROM reservas INNER JOIN asaderos ON reservas.idasadero = asaderos.id WHERE reservas.idasadero = :idasadero";
+            $sentencia = $conexion->prepare($consultaSQL);
+            $sentencia->bindParam(":idasadero", $_GET['idasadero']);
+            $sentencia->execute();
+            $reservas = $sentencia->fetch();
+
+            if ($reservas['reservas'] >= $asadero['maxpersonas']) {
+                $resultado['error'] = true;
+                $resultado['mensaje'] = 'No hay cupo en este asadero';
+            } else {
+                $consultaSQL = "INSERT INTO reservas (idasadero, idusuario) VALUES (:idasadero, :idusuario)";
+                $sentencia = $conexion->prepare($consultaSQL);
+                $sentencia->bindParam(":idasadero", $_GET['idasadero']);
+                $sentencia->bindParam(":idusuario", $_SESSION['usuario']['id']);
+                $sentencia->execute();
+                header("location: ../views/index.php");
+            }          
+        }
     } catch(PDOException $error) {
         header("location: ../views/index.php");
     }
@@ -91,6 +112,19 @@ include "../parts/header.php";?>
         <div class="row justify-content-center">
             <?php include "verasaderos.php"; ?>
         </div>
+        <!-- MENSAJE DE ERROR -->
+        <?php
+        if(isset($resultado) && $resultado['error']) {
+        ?>
+            <div class="container">
+                <div class="alert alert-danger" role="alert">
+                        <?= $resultado['mensaje'] ?>
+                    </div>
+                </div>
+            </div>
+        <?php
+        }
+        ?>
 
         <!-- Mis Reservas -->
         <div class="d-flex justify-content-center">
