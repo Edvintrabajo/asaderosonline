@@ -7,8 +7,6 @@ if(!isset($_SESSION['usuario'])) {
     }
 }
 
-include '../../utils/functions.php';
-
 $error = false;
 $config = include '../../database/config.php';
 

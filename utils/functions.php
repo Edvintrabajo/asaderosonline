@@ -1,8 +1,23 @@
 <?php
+
+/**
+ * Función para codificar el HTML
+ * @param string $html
+ * @return string
+ */
 function codificarHTML($html) {
     return htmlspecialchars($html, ENT_QUOTES | ENT_SUBSTITUTE, "UTF-8");
 }
 
+/**
+ * Función para validar el registro
+ * @param string $nombre
+ * @param string $passwd
+ * @param string $passwd2
+ * @param string $email
+ * @param string $telefono
+ * @return array con el mensaje de error y si hay error o no
+ */
 function validateregister($nombre, $passwd, $passwd2, $email, $telefono) {
     $resultado['error'] = false;
     $resultado['mensaje'] = 'Usuario registrado correctamente';
@@ -55,4 +70,45 @@ function validateregister($nombre, $passwd, $passwd2, $email, $telefono) {
     }
     return $resultado;
 };
+
+/**
+ * Función para validar los datos al crear un asadero
+ * @param string $nombre
+ * @param string $lugar
+ * @param string $fecha
+ * @param string $descripcion
+ * @param string $precio
+ * @param string $maxpersonas
+ * @return array
+ */
+function validatecrearasadero($nombre, $lugar, $fecha, $descripcion, $precio, $maxpersonas) {
+    $resultado['error'] = false;
+    $resultado['mensaje'] = 'Asadero creado correctamente';
+    if (empty($nombre)) {
+        $resultado['error'] = true;
+        $resultado['mensaje'] = 'El nombre del asadero no puede estar vacío';
+        return $resultado;
+    } else if(empty($lugar)) {
+        $resultado['error'] = true;
+        $resultado['mensaje'] = 'El lugar del asadero no puede estar vacío';
+        return $resultado;
+    }else if(strtotime($fecha) < strtotime(date("Y-m-d"))) {
+        $resultado['error'] = true;
+        $resultado['mensaje'] = 'La fecha debe ser posterior a hoy';
+        return $resultado;
+    } else if(empty($descripcion)) {
+        $resultado['error'] = true;
+        $resultado['mensaje'] = 'La descripción del asadero no puede estar vacía';
+        return $resultado;
+    } else if($precio <= 0) {
+        $resultado['error'] = true;
+        $resultado['mensaje'] = 'El precio debe ser mayor a 0';
+        return $resultado;
+    } else if($maxpersonas <= 0) {
+        $resultado['error'] = true;
+        $resultado['mensaje'] = 'El máximo de personas debe ser mayor a 0';
+        return $resultado;
+    } 
+    return $resultado;
+}
 ?>
