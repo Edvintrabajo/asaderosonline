@@ -120,8 +120,23 @@ include "../parts/header.php";?>
 <!-- Masthead-->
 <header class="masthead text-white text-center">
     <div class="shadow container d-flex align-items-center flex-column">
+        
+        <?php
+        /**
+        * Si el usuario no es admin, se muestra el avatar normal, si es admin, se muestra el avatar con link a admin
+        */
+        if (!$_SESSION['usuario']['admin']) {
+        ?>
         <!-- Masthead Avatar Image-->
         <img class="masthead-avatar mb-5" src="../src/assets/img/avataaars.svg" alt="..." />
+        <?php
+        } else{
+        ?>
+        <!-- Masthead Avatar Admin-->
+        <a href="./admin/adminasaderos.php"><img class="masthead-avatar mb-5" src="../src/assets/img/avataaars.svg" alt="..." /></a>
+        <?php
+        }
+        ?>
         <!-- Masthead Heading-->
         <h1 class="masthead-heading text-uppercase mb-0">Asaderos Online</h1>
         <!-- Icon Divider-->
