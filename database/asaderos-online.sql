@@ -2,6 +2,7 @@
 CREATE DATABASE IF NOT EXISTS asaderosonline DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 USE asaderosonline;
 
+
 /* CREACIÓN DE TABLAS */
 CREATE TABLE IF NOT EXISTS Asaderos (
     id INT NOT NULL AUTO_INCREMENT,
@@ -37,8 +38,8 @@ CREATE TABLE IF NOT EXISTS Reservas (
     FOREIGN KEY (idusuario) REFERENCES Usuarios(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-/* INSERCIÓN DE DATOS DE PRUEBA */
 
+/* INSERCIÓN DE DATOS DE PRUEBA */
 INSERT INTO Asaderos (nombre, lugar, fecha, descripcion, precio, maxpersonas) VALUES
 ('Asadero de prueba', 'Calle de prueba', '2023-05-05', 'Descripción de prueba 1', 10, 10),
 ('Asadero de prueba 2', 'Calle de prueba 2', '2023-05-05', 'Descripción de prueba 2', 10, 10),
@@ -47,10 +48,8 @@ INSERT INTO Asaderos (nombre, lugar, fecha, descripcion, precio, maxpersonas) VA
 ('Asadero de prueba 5', 'Calle de prueba 5', '2023-05-05', 'Descripción de prueba 5', 10, 10),
 ('Asadero de prueba 6', 'Calle de prueba 6', '2023-05-05', 'Descripción de prueba 6', 10, 10);
 
-
 INSERT INTO Usuarios (nombre, contrasena, telefono, email, admin) VALUES
 ('edvin', 'Edvin12345@', '666666666', 'edvintrabajo@gmail.com', true);
-
 
 INSERT INTO Reservas (idasadero, idusuario) VALUES
 (1, 1),

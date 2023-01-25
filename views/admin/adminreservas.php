@@ -1,7 +1,19 @@
-<?php 
+<?php
+/**
+ * Vista del Admin de Reservas
+ */
+
+/**
+ * Sessión de usuario
+ */
 session_start();
+
+/**
+ * Comprobamos si el usuario ya está logueado, si no es así, lo redirigimos a la página de login
+ * También comprobamos si es admin, si no es así, lo redirigimos a la página del index
+ */
 if(!isset($_SESSION['usuario'])) {
-    header("location: ../index.php");
+    header("location: ../login.php");
 } else {
     if(!$_SESSION['usuario']['admin']) {
         header("location: ../index.php");

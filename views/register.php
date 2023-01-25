@@ -1,17 +1,41 @@
 <?php
+/**
+ * Vista de Registro
+ */
+
+/**
+ * Sessión de usuario
+ */
 session_start();
 
+/**
+ * Comprobamos si el usuario ya está logueado, si es así, lo redirigimos a la página principal
+ */
 if(isset($_SESSION['usuario'])) {
     header("location: index.php");
 }
 
+/**
+ * Iniciamos la conexión a la base de datos y manejamos los errores
+ */
 try {
+
+    /**
+     * Comprobamos si se ha pulsado el botón de registrarse
+     */
     if (isset($_POST["signup"])) {
         $config = include '../database/config.php';
         include '../utils/functions.php';
 
+        /** 
+         * Validamos los datos introducidos en el formulario
+         */
         $resultado = validateregister($_POST["name"], $_POST["pass"], $_POST["re_pass"], $_POST["email"], $_POST["telefono"]);
         if (!$resultado['error']) {
+
+            /** 
+             * Comprobamos si el email o el telefono ya existen en la base de datos
+             */
             $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
             $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
 
@@ -34,6 +58,10 @@ try {
                 $resultado['error'] = true;
                 $resultado['mensaje'] = 'El telefono ya existe';
             } else {
+                
+                /** 
+                 * Si no hay errores, insertamos el usuario en la base de datos
+                 */
                 $consultaSQL = "INSERT INTO usuarios (nombre, contrasena, telefono, email) VALUES (:nombre, :contrasena, :telefono, :email)";
                 $password_hash = password_hash($_POST["pass"], PASSWORD_DEFAULT);
                 $sentencia = $conexion->prepare($consultaSQL);
@@ -75,10 +103,10 @@ try {
 <body>
 
     <div class="main">
-        <!-- MENSAJE DE ERROR -->
         <?php
         if(isset($resultado) && $resultado['error']) {
         ?>
+            <!-- MENSAJE DE ERROR -->
             <div class="container">
                 <div class="alert alert-danger" role="alert">
                         <?= $resultado['mensaje'] ?>
@@ -88,6 +116,7 @@ try {
         <?php
         }
         ?>
+        <!-- FORMULARIO DE REGISTRO -->
         <section class="signup">
             <div class="container">
                 <div class="signup-content">

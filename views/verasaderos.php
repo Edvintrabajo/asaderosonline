@@ -1,10 +1,21 @@
 <?php
-include '../utils/functions.php';
+/**
+ * Ver asaderos
+ */
 
-$error = false;
-$config = include '../database/config.php';
 
+/**
+ * Iniciamos la conexión a la base de datos
+ */
 try {
+    $error = false;
+
+    include '../utils/functions.php';
+    $config = include '../database/config.php';
+
+    /** 
+     * Listamos los asaderos
+     */
     $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
     $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
 
@@ -19,6 +30,7 @@ try {
 
 if ($error) {
 ?>
+    <!-- MENSAJE DE ERROR -->
     <div class="container mt-2">
         <div class="row">
             <div class="col-md-12">
@@ -31,6 +43,9 @@ if ($error) {
 <?php
 }
 
+/**
+ * Mostramos los asaderos en la página si hay alguno
+ */
 if ($asaderos && $sentencia->rowCount() > 0) {
     foreach ($asaderos as $fila) {
 ?>

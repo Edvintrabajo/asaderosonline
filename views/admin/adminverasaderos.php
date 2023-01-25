@@ -1,16 +1,32 @@
 <?php
+/**
+ * Admin Ver Asaderos
+ */
+
+/**
+ * Comprobamos si el usuario ya está logueado, si no es así, lo redirigimos a la página de login
+ * También comprobamos si es admin, si no es así, lo redirigimos a la página del index
+ */
 if(!isset($_SESSION['usuario'])) {
-    header("location: ../index.php");
+    header("location: ../login.php");
 } else {
     if(!$_SESSION['usuario']['admin']) {
         header("location: ../index.php");
     }
 }
 
-$error = false;
-$config = include '../../database/config.php';
-
+/**
+ * Iniciamos la conexión a la base de datos
+ */
 try {
+    $error = false;
+    
+    include '../../utils/functions.php';
+    $config = include '../../database/config.php';
+
+    /** 
+     * Listamos los asaderos
+     */
     $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
     $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
 
@@ -25,6 +41,7 @@ try {
 
 if ($error) {
 ?>
+    <!-- MENSAJE DE ERROR -->
     <div class="container mt-2">
         <div class="row">
             <div class="col-md-12">
@@ -37,6 +54,9 @@ if ($error) {
 <?php
 }
 
+/**
+ * Mostramos los asaderos en la página si hay alguno
+ */
 if ($asaderos && $sentencia->rowCount() > 0) {
     foreach ($asaderos as $fila) {
 ?>
@@ -66,7 +86,7 @@ if ($asaderos && $sentencia->rowCount() > 0) {
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
-                                <!-- Portfolio Modal - Nombre-->
+                                <!-- Asadero Modal - Nombre-->
                                 <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0"><?php echo codificarHTML($fila["nombre"]); ?></h2>
                                 <!-- Icon Divider-->
                                 <div class="divider-custom">
@@ -75,25 +95,25 @@ if ($asaderos && $sentencia->rowCount() > 0) {
                                     <div class="divider-custom-line"></div>
                                 </div>
                                 <div class="d-flex justify-content-evenly flex-wrap">
-                                    <!-- Portfolio Modal - Lugar-->
+                                    <!-- Asadero Modal - Lugar-->
                                     <p class="mb-4 lead">Lugar: <?php echo codificarHTML($fila["lugar"]); ?></p>
-                                    <!-- Portfolio Modal - Fecha-->
+                                    <!-- Asadero Modal - Fecha-->
                                     <p class="mb-4 lead">Fecha: <?php echo codificarHTML($fila["fecha"]); ?></p>
                                 </div>
 
                                 <div class="d-flex justify-content-evenly flex-wrap">
-                                    <!-- Portfolio Modal - Maxpersonas-->
+                                    <!-- Asadero Modal - Maxpersonas-->
                                     <p class="mb-4 lead">Máximo de personas: <?php echo codificarHTML($fila["maxpersonas"]); ?></p>
-                                    <!-- Portfolio Modal - Precio-->
+                                    <!-- Asadero Modal - Precio-->
                                     <p class="mb-4 lead">Precio: <span class="text-primary"><?php echo codificarHTML($fila["precio"]); ?>€</span></p>
                                 </div>
-                                <!-- Portfolio Modal - Descripcion-->
+                                <!-- Asadero Modal - Descripcion-->
                                 <p class="mb-4 lead"><?php echo codificarHTML($fila["descripcion"]); ?></p>
 
                                 <div class="d-flex justify-content-center">
-                                    <!-- Portfolio Modal - Boton Editar-->
+                                    <!-- Asadero Modal - Boton Editar-->
                                     <a class="btn btn-primary btn-lg m-2" href="admineditarasadero.php?id=<?= $fila["id"] ?>&nombre=<?= $fila["nombre"] ?>&lugar=<?=  $fila["lugar"] ?>&fecha=<?= $fila["fecha"] ?>&precio=<?= $fila["precio"] ?>&maxpersonas=<?= $fila["maxpersonas"] ?>&descripcion=<?= $fila["descripcion"] ?>">Editar</a>
-                                    <!-- Portfolio Modal - Boton Editar-->
+                                    <!-- Asadero Modal - Boton Editar-->
                                     <a class="btn btn-danger btn-lg m-2" href="admineliminarasadero.php?id=<?php echo codificarHTML($fila["id"]); ?>">Eliminar</a>
                                 </div>
                             </div>

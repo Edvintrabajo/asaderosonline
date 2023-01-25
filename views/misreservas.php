@@ -1,15 +1,32 @@
 <?php
+/**
+ * Vista de Mis Reservas
+ */
+
+/**
+ * Sessión de usuario
+ */
 session_start();
+
+/**   
+ * Comprobamos si el usuario ya está logueado, si no es así, lo redirigimos a la página de login
+ */
 if(!isset($_SESSION['usuario'])) {
     header("location: login.php");
 } 
 
-include '../utils/functions.php';
-
-$error = false;
-$config = include '../database/config.php';
-
+/**
+ * Iniciamos la conexión a la base de datos y manejamos los errores
+ */
 try {
+    $error = false;
+
+    include '../utils/functions.php';
+    $config = include '../database/config.php';
+    
+    /** 
+     * Listamos las reservas del usuario
+     */
     $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
     $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
 
@@ -43,6 +60,7 @@ include '../parts/header.php';?>
 <?php
 if ($error) {
 ?>
+    <!-- MENSAJE DE ERROR -->
     <div class="container mt-2">
         <div class="row">
             <div class="col-md-12">
@@ -98,7 +116,7 @@ if ($error) {
                                 <div class="container">
                                     <div class="row justify-content-center">
                                         <div class="col-lg-8">
-                                            <!-- Portfolio Modal - Nombre-->
+                                            <!-- Reserva Modal - Nombre-->
                                             <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Reserva <?php echo $contador; ?></h2>
                                             <!-- Icon Divider-->
                                             <div class="divider-custom">
@@ -106,13 +124,13 @@ if ($error) {
                                                 <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                                                 <div class="divider-custom-line"></div>
                                             </div>
-                                            <!-- Portfolio Modal - ID Asadero-->
+                                            <!-- Reserva Modal - ID Asadero-->
                                             <p class="mb-4 lead ">ID Asadero: <?php echo codificarHTML($fila["idasadero"]); ?></p>
-                                            <!-- Portfolio Modal - Creado en-->
+                                            <!-- Reserva Modal - Creado en-->
                                             <p class="mb-4 lead">Creado en: <?php echo codificarHTML($fila["creadoen"]); ?></p>
             
                                             <div class="d-flex justify-content-center">
-                                                <!-- Portfolio Modal - Boton Reservar-->
+                                                <!-- Reserva Modal - Boton Reservar-->
                                                 <a class="btn btn-danger btn-lg m-2" href="eliminarreserva.php?id=<?php echo codificarHTML($fila["id"]); ?>">Eliminar</a>
                                             </div>
                                         </div>

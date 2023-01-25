@@ -1,14 +1,31 @@
 <?php 
+/**
+ * Vista del index
+ */
+
+/**
+ * Sessión de usuario
+ */
 session_start();
+
+/**
+ * Comprobamos si el usuario ya está logueado, si no es así, lo redirigimos a la página de login
+ */
 if(!isset($_SESSION['usuario'])){
     header("location: login.php");
 }
 
+/**
+ * Comprobamos si se ha pulsado el botón de cerrar sesión, si es así, lo redirigimos a la página de login y destruimos la sesión
+ */
 if(isset($_GET['cerrarsession'])){
     session_destroy();
     header("location: login.php");
 }
 
+/**
+ * Comprobamos si se ha pulsado el botón de reservar
+ */
 if(isset($_GET['reservar'])) {
     $resultado = [
         'error' => false,
@@ -16,6 +33,9 @@ if(isset($_GET['reservar'])) {
     ];
     $config = include "../database/config.php";
     
+    /**
+     * Comprobamos si el usuario ya tiene una reserva en ese asadero
+     */
     try {
         $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
         $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
@@ -30,6 +50,10 @@ if(isset($_GET['reservar'])) {
             $resultado['error'] = true;
             $resultado['mensaje'] = 'Ya tienes una reserva en este asadero';
         } else {
+
+            /** 
+             * Comprobamos si hay cupo en el asadero
+             */
             $consultaSQL = "SELECT maxpersonas FROM asaderos WHERE id = :idasadero";
             $sentencia = $conexion->prepare($consultaSQL);
             $sentencia->bindParam(":idasadero", $_GET['idasadero']);
@@ -46,6 +70,10 @@ if(isset($_GET['reservar'])) {
                 $resultado['error'] = true;
                 $resultado['mensaje'] = 'No hay cupo en este asadero';
             } else {
+
+                /** 
+                 * Si hay cupo, se realiza la reserva
+                 */
                 $consultaSQL = "INSERT INTO reservas (idasadero, idusuario) VALUES (:idasadero, :idusuario)";
                 $sentencia = $conexion->prepare($consultaSQL);
                 $sentencia->bindParam(":idasadero", $_GET['idasadero']);
@@ -58,7 +86,9 @@ if(isset($_GET['reservar'])) {
         header("location: ../views/index.php");
     }
 }
+
 include "../parts/header.php";?>
+
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
     <div class="container">
@@ -112,10 +142,10 @@ include "../parts/header.php";?>
         <div class="row justify-content-center">
             <?php include "verasaderos.php"; ?>
         </div>
-        <!-- MENSAJE DE ERROR -->
         <?php
         if(isset($resultado) && $resultado['error']) {
         ?>
+            <!-- MENSAJE DE ERROR -->
             <div class="container">
                 <div class="alert alert-danger" role="alert">
                         <?= $resultado['mensaje'] ?>
@@ -125,7 +155,6 @@ include "../parts/header.php";?>
         <?php
         }
         ?>
-
         <!-- Mis Reservas -->
         <div class="d-flex justify-content-center">
             <a class="btn btn-primary btn-lg m-2 p-3" href="misreservas.php">Mis Reservas</a>
@@ -136,7 +165,7 @@ include "../parts/header.php";?>
 <!-- Acerca de Section-->
 <section class="page-section bg-primary text-white mb-0" id="about">
     <div class="container">
-        <!-- About Section Heading-->
+        <!-- Acerca de Section Heading-->
         <h2 class="page-section-heading text-center text-uppercase text-white">Acerca de</h2>
         <!-- Icon Divider-->
         <div class="divider-custom divider-light">
@@ -144,12 +173,12 @@ include "../parts/header.php";?>
             <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
             <div class="divider-custom-line"></div>
         </div>
-        <!-- About Section Content-->
+        <!-- Acerca de Section Content-->
         <div class="row">
             <div class="col-lg-4 ms-auto"><p class="lead">Esta página está hecha por el desarrollador web Edvin, como proyecto para la asignatura DSW.</p></div>
             <div class="col-lg-4 me-auto"><p class="lead">Se ha creado con HTML, CSS, JavaScript, MySQL y PHP.</p></div>
         </div>
-        <!-- About Section Button-->
+        <!-- Acerca de Section Button-->
         <div class="text-center mt-4">
             <a class="btn btn-xl btn-outline-light" href="https://github.com/Edvintrabajo?tab=repositories" target="_blank">
                 <i class="fas fa-download me-2"></i>

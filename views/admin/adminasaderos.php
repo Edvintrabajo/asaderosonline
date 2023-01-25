@@ -1,13 +1,28 @@
 <?php
+/**
+ * Vista del Admin de Asaderos
+ */
+
+/**
+ * Sessión de usuario
+ */
 session_start();
+
+/**
+ * Comprobamos si el usuario ya está logueado, si no es así, lo redirigimos a la página de login
+ * También comprobamos si es admin, si no es así, lo redirigimos a la página del index
+ */
 if(!isset($_SESSION['usuario'])) {
-    header("location: ../index.php");
+    header("location: ../login.php");
 } else {
     if(!$_SESSION['usuario']['admin']) {
         header("location: ../index.php");
     }
 }
 
+/**
+ * Comprobamos si se ha pulsado el botón de submit del formulario de crear asadero
+ */
 if(isset($_POST['submit'])){
     $resultado = [
         'error' => false,
@@ -15,19 +30,34 @@ if(isset($_POST['submit'])){
     ];
     $config = include "../../database/config.php";
 
+    /**
+     * Conexión a la base de datos y manejo de errores
+     */
     try {
         $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
         $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
 
         include '../../utils/functions.php';
+
+        /**
+         * Validación de los datos del formulario
+         */
         $resultado = validatecrearasadero($_POST['nombre'], $_POST['lugar'], $_POST['fecha'], $_POST['descripcion'], $_POST['precio'], $_POST['maxpersonas']);
         if (!$resultado['error']) {
+
+            /**
+             * Comprobamos si el nombre del asadero ya existe en la base de datos
+             */
             $consultaSQL = "SELECT * FROM asaderos WHERE nombre = :nombre";
             $sentencia = $conexion->prepare($consultaSQL);
             $sentencia->bindParam(":nombre", $_POST['nombre']);
             $sentencia->execute();
             $asadero = $sentencia->fetch(PDO::FETCH_ASSOC);
             if ($asadero) {
+
+                /**
+                 * Si el nombre del asadero ya existe, mostramos un mensaje de error
+                 */
                 $resultado['error'] = true;
                 $resultado['mensaje'] = 'El nombre del asadero ya existe';
             } else {
@@ -40,6 +70,9 @@ if(isset($_POST['submit'])){
                     "maxpersonas" => $_POST['maxpersonas']
                 );
 
+                /** 
+                 * Si el nombre del asadero no existe, lo agregamos a la base de datos
+                 */
                 $consultaSQL = "INSERT INTO asaderos (nombre, lugar, fecha, descripcion, precio, maxpersonas)";
                 $consultaSQL .= "VALUES (:" . implode(", :", array_keys($asadero)) . ")";
 
@@ -89,10 +122,10 @@ if(isset($_POST['submit'])){
         <div class="d-flex justify-content-center mb-3">
             <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#crear">Crear</a>
         </div>
-        <!-- MENSAJE DE ERROR -->
         <?php
         if(isset($resultado) && $resultado['error']) {
         ?>
+            <!-- MENSAJE DE ERROR -->
             <div class="container mt-3">
                 <div class="row">
                     <div class="col-md-12">
@@ -113,7 +146,7 @@ if(isset($_POST['submit'])){
 </section>
 
 
-<!-- Modal Crear -->
+<!-- Crear asadero Modal -->
 <div class="portfolio-modal modal fade" id="crear" tabindex="-1" aria-labelledby="crear" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
@@ -122,7 +155,7 @@ if(isset($_POST['submit'])){
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-lg-8">
-                            <!-- Portfolio Modal - Nombre-->
+                            <!-- Crear asadero Modal - Nombre-->
                             <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Crear Asadero</h2>
                             <!-- Icon Divider-->
                             <div class="divider-custom">
@@ -130,11 +163,11 @@ if(isset($_POST['submit'])){
                                 <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                                 <div class="divider-custom-line"></div>
                             </div>
-                            <!-- Portfolio Modal - Formulario-->
+                            <!-- Crear asadero Modal - Formulario-->
                             <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
                                 <div class="form-group mb-3">
                                     <label for="nombre">Nombre:</label>
-                                    <input type="text" class="form-control" name="nombre" id="nombre" required">
+                                    <input type="text" class="form-control" name="nombre" id="nombre" required>
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="lugar">Lugar:</label>

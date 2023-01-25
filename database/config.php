@@ -1,4 +1,7 @@
 <?php
+/**
+ * Configuración de la base de datos utilizando dotenv
+ */
 require  __DIR__ .'/../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();

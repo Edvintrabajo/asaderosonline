@@ -1,18 +1,32 @@
 <?php
+/**
+ * Admin Ver Usuarios
+ */
+
+/**
+ * Comprobamos si el usuario ya está logueado, si no es así, lo redirigimos a la página de login
+ * También comprobamos si es admin, si no es así, lo redirigimos a la página del index
+ */
 if(!isset($_SESSION['usuario'])) {
-    header("location: ../index.php");
+    header("location: ../login.php");
 } else {
     if(!$_SESSION['usuario']['admin']) {
         header("location: ../index.php");
     }
 }
 
-include '../../utils/functions.php';
-
-$error = false;
-$config = include '../../database/config.php';
-
+/**
+ * Iniciamos la conexión a la base de datos
+ */
 try {
+    $error = false;
+    
+    include '../../utils/functions.php';
+    $config = include '../../database/config.php';
+
+    /** 
+     * Listamos los usuarios
+     */
     $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
     $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
 
@@ -27,6 +41,7 @@ try {
 
 if ($error) {
 ?>
+    <!-- MENSAJE DE ERROR -->
     <div class="container mt-2">
         <div class="row">
             <div class="col-md-12">
@@ -39,10 +54,13 @@ if ($error) {
 <?php
 }
 
+/**
+ * Mostramos los usuarios en la página si hay alguno
+ */
 if ($asaderos && $sentencia->rowCount() > 0) {
     foreach ($asaderos as $fila) {
 ?>
-    <!-- Asadero Item-->
+    <!-- Usuario Item-->
     <div class="col-md-6 col-lg-4 mb-5">
         <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal<?php echo codificarHTML($fila["id"]); ?>">
             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
@@ -69,7 +87,7 @@ if ($asaderos && $sentencia->rowCount() > 0) {
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
-                                <!-- Portfolio Modal - Nombre-->
+                                <!-- Usuario Modal - Nombre-->
                                 <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0"><?php echo codificarHTML($fila["nombre"]); ?></h2>
                                 <!-- Icon Divider-->
                                 <div class="divider-custom">
@@ -77,17 +95,17 @@ if ($asaderos && $sentencia->rowCount() > 0) {
                                     <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                                     <div class="divider-custom-line"></div>
                                 </div>
-                                <!-- Portfolio Modal - Email-->
+                                <!-- Usuario Modal - Email-->
                                 <p class="mb-4 lead ">Email: <?php echo codificarHTML($fila["email"]); ?></p>
-                                <!-- Portfolio Modal - Telefono-->
+                                <!-- Usuario Modal - Telefono-->
                                 <p class="mb-4 lead">Telefono: <?php echo codificarHTML($fila["telefono"]); ?></p>
-                                <!-- Portfolio Modal - Admin-->
+                                <!-- Usuario Modal - Admin-->
                                 <p class="mb-4 lead">Admin: <?php if($fila["admin"]) { echo 'Si'; }else { echo 'No'; }; ?></p>
-                                <!-- Portfolio Modal - Creado en-->
+                                <!-- Usuario Modal - Creado en-->
                                 <p class="mb-4 lead">Creado en: <?php echo codificarHTML($fila["creadoen"]); ?></p>
 
                                 <div class="d-flex justify-content-center">
-                                    <!-- Portfolio Modal - Boton Reservar-->
+                                    <!-- Usuario Modal - Boton Reservar-->
                                     <a class="btn btn-danger btn-lg m-2" href="admineliminarusuario.php?id=<?php echo codificarHTML($fila["id"]); ?>">Eliminar</a>
                                 </div>
                             </div>

@@ -1,11 +1,28 @@
 <?php
+/**
+ * Vista de login
+ */
+
+/**
+ * Sessión de usuario
+ */
 session_start();
 
+/**
+ * Comprobamos si el usuario ya está logueado, si es así, lo redirigimos a la página principal
+ */
 if(isset($_SESSION['usuario'])) {
     header("location: index.php");
 }
 
+/**
+ * Iniciamos la conexión a la base de datos y manejamos los errores
+ */
 try {
+
+    /**
+     * Comprobamos si se ha pulsado el botón de iniciar sesión
+     */
     if (isset($_POST["signin"])) {
         $resultado = [
             'error' => false,
@@ -13,6 +30,9 @@ try {
         ];
         $config = include '../database/config.php';
     
+        /** 
+         * Comprobamos si el usuario existe en la base de datos y si la contraseña es correcta
+         */
         $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
         $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
         $consultaSQL = "SELECT * FROM usuarios WHERE email = :email";
@@ -21,6 +41,10 @@ try {
         $sentencia->execute();
         $usuario = $sentencia->fetch(PDO::FETCH_ASSOC);
         if ($usuario && password_verify($_POST["your_pass"], $usuario['contrasena'])) {
+            
+            /**
+             * Si el usuario existe y la contraseña es correcta, iniciamos la sesión
+             */
             $_SESSION['usuario'] = $usuario;
             header("Location: index.php");
         } else {
@@ -58,10 +82,10 @@ try {
 <body>
 
     <div class="main">
-        <!-- MENSAJE DE ERROR -->
         <?php
         if(isset($resultado) && $resultado['error']) {
         ?>
+            <!-- MENSAJE DE ERROR -->
             <div class="container">
                 <div class="alert alert-danger" role="alert">
                         <?= $resultado['mensaje'] ?>
@@ -71,6 +95,7 @@ try {
         <?php
         }
         ?>
+        <!-- Formulario de login -->
         <section class="sign-in">
             <div class="container">
                 <div class="signin-content">
