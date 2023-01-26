@@ -12,9 +12,7 @@
  * @since 1.0
  */
 
-/**
- * Sessión de usuario
- */
+// Sessión de usuario
 session_start();
 
 /**
@@ -39,9 +37,6 @@ try {
         ];
         $config = include '../database/config.php';
     
-        /** 
-         * Comprobamos si el usuario existe en la base de datos y si la contraseña es correcta
-         */
         $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
         $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
         $consultaSQL = "SELECT * FROM usuarios WHERE email = :email";
@@ -49,11 +44,13 @@ try {
         $sentencia->bindParam(":email", $_POST["your_email"]);
         $sentencia->execute();
         $usuario = $sentencia->fetch(PDO::FETCH_ASSOC);
+        
+        /** 
+         * Comprobamos si el usuario existe en la base de datos y si la contraseña es correcta
+         * Si existe y la contraseña es correcta, iniciamos la sesión
+         * Si no existe o la contraseña es incorrecta, mostramos un mensaje de error
+         */
         if ($usuario && password_verify($_POST["your_pass"], $usuario['contrasena'])) {
-            
-            /**
-             * Si el usuario existe y la contraseña es correcta, iniciamos la sesión
-             */
             $_SESSION['usuario'] = $usuario;
             header("Location: index.php");
         } else {

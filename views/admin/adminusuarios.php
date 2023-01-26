@@ -12,9 +12,7 @@
  * @since 1.0
  */
 
-/**
- * Sessión de usuario
- */
+// Sessión de usuario
 session_start();
 
 /**

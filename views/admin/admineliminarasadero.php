@@ -12,9 +12,7 @@
  * @since 1.0
  */
 
-/**
- * Sessión de usuario
- */
+// Sessión de usuario
 session_start();
 
 /**
@@ -31,20 +29,15 @@ if(!isset($_SESSION['usuario'])) {
 
 /**
  * Iniciamos la conexión a la base de datos
- */
-$config = include '../../database/config.php';
-
-$dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
-$conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
-
-/**
  * Comprobamos si se ha pasado el id del asadero por GET
+ * Si se ha pasado, eliminamos el asadero de la base de datos
  */
 if (isset($_GET["id"])) {
+    $config = include '../../database/config.php';
 
-    /** 
-     * Eliminamos el asadero de la base de datos y redirigimos a la página de admin asaderos
-     */
+    $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
+    $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
+
     $id = $_GET["id"];
     $consultaSQL = "DELETE FROM asaderos WHERE id = :id";
     $sentencia = $conexion->prepare($consultaSQL);

@@ -12,9 +12,7 @@
  * @since 1.0
  */
 
-/**
- * Sessión de usuario
- */
+// Sessión de usuario
 session_start();
 
 /**
@@ -36,15 +34,11 @@ try {
         $config = include '../database/config.php';
         include '../utils/functions.php';
 
+        $resultado = validateregister($_POST["name"], $_POST["pass"], $_POST["re_pass"], $_POST["email"], $_POST["telefono"]);
         /** 
          * Validamos los datos introducidos en el formulario
          */
-        $resultado = validateregister($_POST["name"], $_POST["pass"], $_POST["re_pass"], $_POST["email"], $_POST["telefono"]);
         if (!$resultado['error']) {
-
-            /** 
-             * Comprobamos si el email o el telefono ya existen en la base de datos
-             */
             $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
             $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
 
@@ -53,13 +47,18 @@ try {
             $sentencia->bindParam(":emailaux", $_POST["email"]);
             $sentencia->execute();
             $resultadoaux = $sentencia->fetchAll();
-
+            
             $consultaSQL = "SELECT * FROM usuarios WHERE telefono = :telefonoaux";
             $sentencia = $conexion->prepare($consultaSQL);
             $sentencia->bindParam(":telefonoaux", $_POST["telefono"]);
             $sentencia->execute();
             $resultadoaux2 = $sentencia->fetchAll();
 
+            /** 
+             * Comprobamos si el email o el telefono ya existen en la base de datos
+             * Si es así, mostramos un mensaje de error
+             * Si no hay errores, insertamos el usuario en la base de datos
+             */
             if ($resultadoaux) {
                 $resultado['error'] = true;
                 $resultado['mensaje'] = 'El email ya existe';
@@ -67,10 +66,6 @@ try {
                 $resultado['error'] = true;
                 $resultado['mensaje'] = 'El telefono ya existe';
             } else {
-                
-                /** 
-                 * Si no hay errores, insertamos el usuario en la base de datos
-                 */
                 $consultaSQL = "INSERT INTO usuarios (nombre, contrasena, telefono, email) VALUES (:nombre, :contrasena, :telefono, :email)";
                 $password_hash = password_hash($_POST["pass"], PASSWORD_DEFAULT);
                 $sentencia = $conexion->prepare($consultaSQL);

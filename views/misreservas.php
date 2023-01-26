@@ -12,9 +12,7 @@
  * @since 1.0
  */
 
-/**
- * Sessión de usuario
- */
+// Sessión de usuario
 session_start();
 
 /**   
@@ -26,19 +24,15 @@ if(!isset($_SESSION['usuario'])) {
 
 /**
  * Iniciamos la conexión a la base de datos y manejamos los errores
+ * Listamos las reservas del usuario
  */
 try {
     $error = false;
-
     include '../utils/functions.php';
     $config = include '../database/config.php';
-    
-    /** 
-     * Listamos las reservas del usuario
-     */
+
     $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
     $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
-
     $consultaSQL = "SELECT * FROM reservas WHERE idusuario = :idusuario";
     $sentencia = $conexion->prepare($consultaSQL);
     $sentencia->bindParam(':idusuario', $_SESSION['usuario']['id']);

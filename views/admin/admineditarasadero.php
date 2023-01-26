@@ -12,9 +12,7 @@
  * @since 1.0
  */
 
-/**
- * Sessión de usuario
- */
+// Sessión de usuario
 session_start();
 
 /**
@@ -41,6 +39,7 @@ if (isset($_POST["submit"])) {
 
     /**
      * Conexión a la base de datos y manejo de errores
+     * Actualizamos los datos del asadero en la base de datos
      */
     try {
         $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
@@ -54,9 +53,6 @@ if (isset($_POST["submit"])) {
         $precio = $_POST["precio"];
         $maxpersonas = $_POST["maxpersonas"];
 
-        /** 
-         * Actualizamos los datos del asadero en la base de datos
-         */
         $consultaSQL = "UPDATE asaderos SET nombre = :nombre, lugar = :lugar, fecha = :fecha, descripcion = :descripcion, precio = :precio, maxpersonas = :maxpersonas WHERE id = :id";
         $sentencia = $conexion->prepare($consultaSQL);
         $sentencia->bindParam(":id", $id);

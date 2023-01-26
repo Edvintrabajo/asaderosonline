@@ -25,24 +25,20 @@ if(!isset($_SESSION['usuario'])) {
 }
 
 /**
- * Iniciamos la conexión a la base de datos
+ * Iniciamos la conexión a la base de datos y menejamos los errores
+ * Listamos los usuarios
  */
 try {
     $error = false;
     
     include '../../utils/functions.php';
     $config = include '../../database/config.php';
-
-    /** 
-     * Listamos los usuarios
-     */
     $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
     $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
 
     $consultaSQL = "SELECT * FROM usuarios";
     $sentencia = $conexion->prepare($consultaSQL);
     $sentencia->execute();
-
     $asaderos = $sentencia->fetchAll();
 } catch (PDOException $error) {
     $error = $error->getMessage();

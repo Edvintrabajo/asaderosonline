@@ -94,59 +94,60 @@ $(document).ready(function(){initNavTree('adminusuarios_8php_source.html',''); i
 </div><!--header-->
 <div class="contents">
 <a href="adminusuarios_8php.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span>&lt;?php</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>session_start();</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keywordflow">if</span>(!isset($_SESSION[<span class="stringliteral">&#39;usuario&#39;</span>])) {</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    header(<span class="stringliteral">&quot;location: ../login.php&quot;</span>);</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="adminusuarios_8php.html#a8025a4804382d470f6a10171b53434ff">   26</a></span>} <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordflow">if</span>(!$_SESSION[<span class="stringliteral">&#39;usuario&#39;</span>][<span class="stringliteral">&#39;admin&#39;</span>]) {</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        header(<span class="stringliteral">&quot;location: ../index.php&quot;</span>);</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    }</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>}</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">// Sessión de usuario</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>session_start();</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keywordflow">if</span>(!isset($_SESSION[<span class="stringliteral">&#39;usuario&#39;</span>])) {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    header(<span class="stringliteral">&quot;location: ../login.php&quot;</span>);</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="adminusuarios_8php.html#a8025a4804382d470f6a10171b53434ff">   24</a></span>} <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordflow">if</span>(!$_SESSION[<span class="stringliteral">&#39;usuario&#39;</span>][<span class="stringliteral">&#39;admin&#39;</span>]) {</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        header(<span class="stringliteral">&quot;location: ../index.php&quot;</span>);</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    }</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>}</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>include <span class="stringliteral">&quot;../../parts/adminheader.php&quot;</span>; ?&gt;</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>include <span class="stringliteral">&quot;../../parts/adminheader.php&quot;</span>; ?&gt;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>&lt;!-- Navigation--&gt;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>&lt;nav <span class="keyword">class</span>=<span class="stringliteral">&quot;navbar navbar-expand-lg bg-secondary text-uppercase fixed-top&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;subNav&quot;</span>&gt;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;container&quot;</span>&gt;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        &lt;a <span class="keyword">class</span>=<span class="stringliteral">&quot;navbar-brand&quot;</span> href=<span class="stringliteral">&quot;../index.php&quot;</span>&gt;Asaderos Online&lt;/a&gt;</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        &lt;button <span class="keyword">class</span>=<span class="stringliteral">&quot;navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded&quot;</span> type=<span class="stringliteral">&quot;button&quot;</span> data-bs-toggle=<span class="stringliteral">&quot;collapse&quot;</span> data-bs-target=<span class="stringliteral">&quot;#navbarResponsive&quot;</span> aria-controls=<span class="stringliteral">&quot;navbarResponsive&quot;</span> aria-expanded=<span class="stringliteral">&quot;false&quot;</span> aria-label=<span class="stringliteral">&quot;Toggle navigation&quot;</span>&gt;</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>            Menu</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>            &lt;i <span class="keyword">class</span>=<span class="stringliteral">&quot;fas fa-bars&quot;</span>&gt;&lt;/i&gt;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        &lt;/button&gt;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;collapse navbar-collapse&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;navbarResponsive&quot;</span>&gt;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>            &lt;ul <span class="keyword">class</span>=<span class="stringliteral">&quot;navbar-nav ms-auto&quot;</span>&gt;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>                &lt;li <span class="keyword">class</span>=<span class="stringliteral">&quot;nav-item mx-0 mx-lg-1&quot;</span>&gt;&lt;a <span class="keyword">class</span>=<span class="stringliteral">&quot;nav-link py-3 px-0 px-lg-3 rounded&quot;</span> href=<span class="stringliteral">&quot;adminasaderos.php&quot;</span>&gt;Asaderos&lt;/a&gt;&lt;/li&gt;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>                &lt;li <span class="keyword">class</span>=<span class="stringliteral">&quot;nav-item mx-0 mx-lg-1&quot;</span>&gt;&lt;a <span class="keyword">class</span>=<span class="stringliteral">&quot;nav-link py-3 px-0 px-lg-3 rounded active&quot;</span> href=<span class="stringliteral">&quot;adminusuarios.php&quot;</span>&gt;Usuarios&lt;/a&gt;&lt;/li&gt;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>                &lt;li <span class="keyword">class</span>=<span class="stringliteral">&quot;nav-item mx-0 mx-lg-1&quot;</span>&gt;&lt;a <span class="keyword">class</span>=<span class="stringliteral">&quot;nav-link py-3 px-0 px-lg-3 rounded&quot;</span> href=<span class="stringliteral">&quot;adminreservas.php&quot;</span>&gt;Reservas&lt;/a&gt;&lt;/li&gt;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>            &lt;/ul&gt;</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        &lt;/div&gt;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    &lt;/div&gt;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>&lt;/nav&gt;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>&lt;!-- Usuarios Section--&gt;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>&lt;section <span class="keyword">class</span>=<span class="stringliteral">&quot;page-section portfolio mt-5&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;usuarios&quot;</span>&gt;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;container&quot;</span>&gt;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        &lt;!-- Usuarios Section Heading--&gt;</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        &lt;h2 <span class="keyword">class</span>=<span class="stringliteral">&quot;page-section-heading text-center text-uppercase text-secondary mb-0&quot;</span>&gt;Usuarios&lt;/h2&gt;</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        &lt;!-- Icon Divider--&gt;</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;divider-custom&quot;</span>&gt;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>&lt;!-- Navigation--&gt;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>&lt;nav <span class="keyword">class</span>=<span class="stringliteral">&quot;navbar navbar-expand-lg bg-secondary text-uppercase fixed-top&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;subNav&quot;</span>&gt;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;container&quot;</span>&gt;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        &lt;a <span class="keyword">class</span>=<span class="stringliteral">&quot;navbar-brand&quot;</span> href=<span class="stringliteral">&quot;../index.php&quot;</span>&gt;Asaderos Online&lt;/a&gt;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        &lt;button <span class="keyword">class</span>=<span class="stringliteral">&quot;navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded&quot;</span> type=<span class="stringliteral">&quot;button&quot;</span> data-bs-toggle=<span class="stringliteral">&quot;collapse&quot;</span> data-bs-target=<span class="stringliteral">&quot;#navbarResponsive&quot;</span> aria-controls=<span class="stringliteral">&quot;navbarResponsive&quot;</span> aria-expanded=<span class="stringliteral">&quot;false&quot;</span> aria-label=<span class="stringliteral">&quot;Toggle navigation&quot;</span>&gt;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>            Menu</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>            &lt;i <span class="keyword">class</span>=<span class="stringliteral">&quot;fas fa-bars&quot;</span>&gt;&lt;/i&gt;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        &lt;/button&gt;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;collapse navbar-collapse&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;navbarResponsive&quot;</span>&gt;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>            &lt;ul <span class="keyword">class</span>=<span class="stringliteral">&quot;navbar-nav ms-auto&quot;</span>&gt;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>                &lt;li <span class="keyword">class</span>=<span class="stringliteral">&quot;nav-item mx-0 mx-lg-1&quot;</span>&gt;&lt;a <span class="keyword">class</span>=<span class="stringliteral">&quot;nav-link py-3 px-0 px-lg-3 rounded&quot;</span> href=<span class="stringliteral">&quot;adminasaderos.php&quot;</span>&gt;Asaderos&lt;/a&gt;&lt;/li&gt;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>                &lt;li <span class="keyword">class</span>=<span class="stringliteral">&quot;nav-item mx-0 mx-lg-1&quot;</span>&gt;&lt;a <span class="keyword">class</span>=<span class="stringliteral">&quot;nav-link py-3 px-0 px-lg-3 rounded active&quot;</span> href=<span class="stringliteral">&quot;adminusuarios.php&quot;</span>&gt;Usuarios&lt;/a&gt;&lt;/li&gt;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>                &lt;li <span class="keyword">class</span>=<span class="stringliteral">&quot;nav-item mx-0 mx-lg-1&quot;</span>&gt;&lt;a <span class="keyword">class</span>=<span class="stringliteral">&quot;nav-link py-3 px-0 px-lg-3 rounded&quot;</span> href=<span class="stringliteral">&quot;adminreservas.php&quot;</span>&gt;Reservas&lt;/a&gt;&lt;/li&gt;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            &lt;/ul&gt;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        &lt;/div&gt;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    &lt;/div&gt;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>&lt;/nav&gt;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>&lt;!-- Usuarios Section--&gt;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>&lt;section <span class="keyword">class</span>=<span class="stringliteral">&quot;page-section portfolio mt-5&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;usuarios&quot;</span>&gt;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;container&quot;</span>&gt;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        &lt;!-- Usuarios Section Heading--&gt;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        &lt;h2 <span class="keyword">class</span>=<span class="stringliteral">&quot;page-section-heading text-center text-uppercase text-secondary mb-0&quot;</span>&gt;Usuarios&lt;/h2&gt;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        &lt;!-- Icon Divider--&gt;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;divider-custom&quot;</span>&gt;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;divider-custom-line&quot;</span>&gt;&lt;/div&gt;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>            &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;divider-custom-icon&quot;</span>&gt;&lt;i <span class="keyword">class</span>=<span class="stringliteral">&quot;fas fa-star&quot;</span>&gt;&lt;/i&gt;&lt;/div&gt;</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>            &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;divider-custom-line&quot;</span>&gt;&lt;/div&gt;</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>            &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;divider-custom-icon&quot;</span>&gt;&lt;i <span class="keyword">class</span>=<span class="stringliteral">&quot;fas fa-star&quot;</span>&gt;&lt;/i&gt;&lt;/div&gt;</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;divider-custom-line&quot;</span>&gt;&lt;/div&gt;</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        &lt;/div&gt;</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        &lt;!-- Usuarios Grid Items--&gt;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;row justify-content-center&quot;</span>&gt;</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>            &lt;?php include <span class="stringliteral">&quot;adminverusuarios.php&quot;</span>; ?&gt;</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        &lt;/div&gt;</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    &lt;/div&gt;</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>&lt;/section&gt;</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>&lt;!-- Bootstrap core JS--&gt;</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>&lt;script src=<span class="stringliteral">&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js&quot;</span>&gt;&lt;/script&gt;</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>&lt;!-- Core theme JS--&gt;</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>&lt;script src=<span class="stringliteral">&quot;../../src/js/scripts.js&quot;</span>&gt;&lt;/script&gt;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        &lt;/div&gt;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        &lt;!-- Usuarios Grid Items--&gt;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;row justify-content-center&quot;</span>&gt;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>            &lt;?php include <span class="stringliteral">&quot;adminverusuarios.php&quot;</span>; ?&gt;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        &lt;/div&gt;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    &lt;/div&gt;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>&lt;/section&gt;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>&lt;!-- Bootstrap core JS--&gt;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>&lt;script src=<span class="stringliteral">&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js&quot;</span>&gt;&lt;/script&gt;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>&lt;!-- Core theme JS--&gt;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>&lt;script src=<span class="stringliteral">&quot;../../src/js/scripts.js&quot;</span>&gt;&lt;/script&gt;</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

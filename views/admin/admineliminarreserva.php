@@ -12,9 +12,7 @@
  * @since 1.0
  */
 
-/**
- * Sessión de usuario
- */
+// Sessión de usuario
 session_start();
 
 /**
@@ -31,16 +29,15 @@ if(!isset($_SESSION['usuario'])) {
 
 /**
  * Iniciamos la conexión a la base de datos
- */
-$config = include '../../database/config.php';
-
-$dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
-$conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
-
-/**
  * Comprobamos si se ha pasado el id de la reserva por GET
+ * Si se ha pasado, eliminamos la reserva de la base de datos
  */
 if (isset($_GET["id"])) {
+    $config = include '../../database/config.php';
+
+    $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
+    $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
+    
     $id = $_GET["id"];
     $consultaSQL = "DELETE FROM reservas WHERE id = :id";
     $sentencia = $conexion->prepare($consultaSQL);

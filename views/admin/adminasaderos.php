@@ -12,9 +12,7 @@
  * @since 1.0
  */
 
-/**
- * Sessión de usuario
- */
+// Sessión de usuario
 session_start();
 
 /**
@@ -47,26 +45,20 @@ if(isset($_POST['submit'])){
         $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
 
         include '../../utils/functions.php';
-
-        /**
-         * Validación de los datos del formulario
-         */
         $resultado = validatecrearasadero($_POST['nombre'], $_POST['lugar'], $_POST['fecha'], $_POST['descripcion'], $_POST['precio'], $_POST['maxpersonas']);
         if (!$resultado['error']) {
-
-            /**
-             * Comprobamos si el nombre del asadero ya existe en la base de datos
-             */
             $consultaSQL = "SELECT * FROM asaderos WHERE nombre = :nombre";
             $sentencia = $conexion->prepare($consultaSQL);
             $sentencia->bindParam(":nombre", $_POST['nombre']);
             $sentencia->execute();
             $asadero = $sentencia->fetch(PDO::FETCH_ASSOC);
-            if ($asadero) {
 
-                /**
-                 * Si el nombre del asadero ya existe, mostramos un mensaje de error
-                 */
+            /**
+             * Comprobamos si el nombre del asadero ya existe en la base de datos
+             * Si es así, mostramos un mensaje de error
+             * Si no es así, agregamos el asadero a la base de datos
+             */
+            if ($asadero) {
                 $resultado['error'] = true;
                 $resultado['mensaje'] = 'El nombre del asadero ya existe';
             } else {
@@ -78,13 +70,8 @@ if(isset($_POST['submit'])){
                     "precio" => $_POST['precio'],
                     "maxpersonas" => $_POST['maxpersonas']
                 );
-
-                /** 
-                 * Si el nombre del asadero no existe, lo agregamos a la base de datos
-                 */
                 $consultaSQL = "INSERT INTO asaderos (nombre, lugar, fecha, descripcion, precio, maxpersonas)";
                 $consultaSQL .= "VALUES (:" . implode(", :", array_keys($asadero)) . ")";
-
                 $sentencia = $conexion->prepare($consultaSQL);
                 $sentencia->execute($asadero);
                 header("location: adminasaderos.php");

@@ -25,7 +25,8 @@ if(!isset($_SESSION['usuario'])) {
 }
 
 /**
- * Iniciamos la conexión a la base de datos
+ * Iniciamos la conexión a la base de datos y manejo de errores
+ * Listamos las reservas
  */
 try {
     $error = false;
@@ -33,16 +34,12 @@ try {
     include '../../utils/functions.php';
     $config = include '../../database/config.php';
 
-    /** 
-     * Listamos las reservas
-     */
     $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
     $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
 
     $consultaSQL = "SELECT * FROM reservas";
     $sentencia = $conexion->prepare($consultaSQL);
     $sentencia->execute();
-
     $reservas = $sentencia->fetchAll();
 } catch (PDOException $error) {
     $error = $error->getMessage();

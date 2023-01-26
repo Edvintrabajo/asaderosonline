@@ -12,9 +12,7 @@
  * @since 1.0
  */
 
-/**
- * Sessión de usuario
- */
+// Sessión de usuario
 session_start();
 
 /**
@@ -55,14 +53,16 @@ if(isset($_GET['reservar'])) {
         $sentencia->bindParam(":idusuario", $_SESSION['usuario']['id']);
         $sentencia->execute();
         $reserva = $sentencia->fetchall();
+
+        /** 
+         * Si el usuario ya tiene una reserva en ese asadero, se muestra un mensaje de error
+         * Si no, se comprueba si hay cupo en el asadero
+         * Si hay cupo, se realiza la reserva
+         */
         if($reserva){
             $resultado['error'] = true;
             $resultado['mensaje'] = 'Ya tienes una reserva en este asadero';
         } else {
-
-            /** 
-             * Comprobamos si hay cupo en el asadero
-             */
             $consultaSQL = "SELECT maxpersonas FROM asaderos WHERE id = :idasadero";
             $sentencia = $conexion->prepare($consultaSQL);
             $sentencia->bindParam(":idasadero", $_GET['idasadero']);
@@ -75,14 +75,13 @@ if(isset($_GET['reservar'])) {
             $sentencia->execute();
             $reservas = $sentencia->fetch();
 
+            /** 
+             * Si hay cupo, se realiza la reserva
+             */
             if ($reservas['reservas'] >= $asadero['maxpersonas']) {
                 $resultado['error'] = true;
                 $resultado['mensaje'] = 'No hay cupo en este asadero';
             } else {
-
-                /** 
-                 * Si hay cupo, se realiza la reserva
-                 */
                 $consultaSQL = "INSERT INTO reservas (idasadero, idusuario) VALUES (:idasadero, :idusuario)";
                 $sentencia = $conexion->prepare($consultaSQL);
                 $sentencia->bindParam(":idasadero", $_GET['idasadero']);
