@@ -7,11 +7,11 @@ Realizado con HTML, CSS, JavaScript, MySql y PHP.
 ## 📋 Instalación
 1. Clonar el repositorio `git clone https://github.com/Edvintrabajo/asaderosonline.git`
 2. Crear la base de datos, el archivo sql está en 'database/asaderos-online.sql'
-3. Crear el archivo .env en el directorio raiz del proyecto con las variables de entorno para la conexión a la base de datos, el archivo .env debe tener el siguiente contenido :
+3. Crear el archivo .env en el directorio raiz del proyecto con las variables de entorno para la conexión a la base de datos, un ejemplo del contenido del archivo .env sería el siguiente:
 ```
 DB_HOST=localhost
-DB_USER=edvin
-DB_PASS=12345
+DB_USER=root
+DB_PASS=
 DB_NAME=asaderosonline
 ```
 4. Instalar las dependencias con `composer install` (Este comando lo tienes que ejecutar en la raiz del proyecto)
