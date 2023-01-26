@@ -19,7 +19,7 @@ session_start();
  * Comprobamos si el usuario ya está logueado, si es así, lo redirigimos a la página principal
  */
 if(isset($_SESSION['usuario'])) {
-    header("location: index.php");
+    header("location: ../index.php");
 }
 
 /**
@@ -74,7 +74,7 @@ try {
                 $sentencia->bindParam(":telefono", $_POST["telefono"]);
                 $sentencia->bindParam(":email", $_POST["email"]);
                 $sentencia->execute();
-                header("Location: index.php");
+                header("Location: ../index.php");
             }
         }
     }

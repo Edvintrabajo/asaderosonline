@@ -19,7 +19,7 @@ session_start();
  * Comprobamos si el usuario ya está logueado, si no es así, lo redirigimos a la página de login
  */
 if(!isset($_SESSION['usuario'])){
-    header("location: login.php");
+    header("location: ./views/login.php");
 }
 
 /**
@@ -27,7 +27,7 @@ if(!isset($_SESSION['usuario'])){
  */
 if(isset($_GET['cerrarsession'])){
     session_destroy();
-    header("location: login.php");
+    header("location: ./views/login.php");
 }
 
 /**
@@ -38,7 +38,7 @@ if(isset($_GET['reservar'])) {
         'error' => false,
         'mensaje' => ''
     ];
-    $config = include "../database/config.php";
+    $config = include "database/config.php";
     
     /**
      * Comprobamos si el usuario ya tiene una reserva en ese asadero
@@ -87,15 +87,15 @@ if(isset($_GET['reservar'])) {
                 $sentencia->bindParam(":idasadero", $_GET['idasadero']);
                 $sentencia->bindParam(":idusuario", $_SESSION['usuario']['id']);
                 $sentencia->execute();
-                header("location: ../views/index.php");
+                header("location: index.php");
             }          
         }
     } catch(PDOException $error) {
-        header("location: ../views/index.php");
+        header("location: index.php");
     }
 }
 
-include "../parts/header.php";?>
+include "parts/header.php";?>
 
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
@@ -127,12 +127,12 @@ include "../parts/header.php";?>
         if (!$_SESSION['usuario']['admin']) {
         ?>
         <!-- Masthead Avatar Image-->
-        <img class="masthead-avatar mb-5" src="../src/assets/img/avataaars.svg" alt="..." />
+        <img class="masthead-avatar mb-5" src="src/assets/img/avataaars.svg" alt="..." />
         <?php
         } else{
         ?>
         <!-- Masthead Avatar Admin-->
-        <a href="./admin/adminasaderos.php"><img class="masthead-avatar mb-5" src="../src/assets/img/avataaars.svg" alt="..." /></a>
+        <a href="./views/admin/adminasaderos.php"><img class="masthead-avatar mb-5" src="src/assets/img/avataaars.svg" alt="..." /></a>
         <?php
         }
         ?>
@@ -163,7 +163,7 @@ include "../parts/header.php";?>
         </div>
         <!-- Asaderos Grid Items-->
         <div class="row justify-content-center">
-            <?php include "verasaderos.php"; ?>
+            <?php include "./views/verasaderos.php"; ?>
         </div>
         <?php
         if(isset($resultado) && $resultado['error']) {
@@ -180,7 +180,7 @@ include "../parts/header.php";?>
         ?>
         <!-- Mis Reservas -->
         <div class="d-flex justify-content-center">
-            <a class="btn btn-primary btn-lg m-2 p-3" href="misreservas.php">Mis Reservas</a>
+            <a class="btn btn-primary btn-lg m-2 p-3" href="./views/misreservas.php">Mis Reservas</a>
         </div>
     </div>
 </section>
@@ -273,4 +273,4 @@ include "../parts/header.php";?>
     </div>
 </section>
 
-<?php include "../parts/footer.php"; ?>
+<?php include "parts/footer.php"; ?>

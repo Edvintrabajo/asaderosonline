@@ -19,7 +19,7 @@ session_start();
  * Comprobamos si el usuario ya está logueado, si es así, lo redirigimos a la página principal
  */
 if(isset($_SESSION['usuario'])) {
-    header("location: index.php");
+    header("location: ../index.php");
 }
 
 /**
@@ -52,7 +52,7 @@ try {
          */
         if ($usuario && password_verify($_POST["your_pass"], $usuario['contrasena'])) {
             $_SESSION['usuario'] = $usuario;
-            header("Location: index.php");
+            header("Location: ../index.php");
         } else {
             $resultado['error'] = true;
             $resultado['mensaje'] = 'Datos introducidos incorrectos';

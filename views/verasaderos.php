@@ -19,8 +19,8 @@
  */
 try {
     $error = false;
-    include '../utils/functions.php';
-    $config = include '../database/config.php';
+    include 'utils/functions.php';
+    $config = include 'database/config.php';
 
     $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
     $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);

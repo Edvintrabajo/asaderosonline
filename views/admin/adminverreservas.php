@@ -20,7 +20,7 @@ if(!isset($_SESSION['usuario'])) {
     header("location: ../login.php");
 } else {
     if(!$_SESSION['usuario']['admin']) {
-        header("location: ../index.php");
+        header("location: ../../index.php");
     }
 }
 
