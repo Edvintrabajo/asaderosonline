@@ -4,7 +4,7 @@
 Gestor de Asaderos Online Web - CRUD.
 Realizado con HTML, CSS, JavaScript, MySql y PHP.
 
-## 🔸 Visuals
+## 🔸 Captura de la página principal
 ![imagen](https://user-images.githubusercontent.com/74573542/214897302-28bda8ef-b592-4f3d-8f4c-499b83092bf8.png)
 
 ## 📋 Instalación
