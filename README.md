@@ -1,6 +1,6 @@
 ﻿# 📌 Asaderos Online
 
-## 📋 Descripción
+## 📝 Descripción
 Gestor de Asaderos Online Web - CRUD.
 Realizado con HTML, CSS, JavaScript, MySql y PHP.
 
