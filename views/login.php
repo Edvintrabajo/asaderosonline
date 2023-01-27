@@ -112,7 +112,7 @@ try {
 
                     <div class="signin-form">
                         <h2 class="form-title">Iniciar sesión</h2>
-                        <form method="POST" action="<?php echo $_SERVER['PHP_SELF'];?>" class="register-form" id="login-form">
+                        <form method="POST" action="login.php" class="register-form" id="login-form">
                             <div class="form-group">
                                 <label for="your_email"><i class="zmdi zmdi-email"></i></label>
                                 <input type="email" name="your_email" id="your_email" placeholder="Tu email"/>
