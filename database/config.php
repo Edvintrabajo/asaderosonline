@@ -12,7 +12,7 @@
  * @since 1.0
  */
 
-// CONGIGURACIÓN PARA USAR .ENV EN PRODUCCIÓN EN HEROKU
+// Si existe la variable de entorno CLEARDB_DATABASE_URL, significa que estamos en entorno de producción, si no existe significa que estamos en entorno de desarrollo
 if (getenv('CLEARDB_DATABASE_URL')) {
     return [
         'db' => [
