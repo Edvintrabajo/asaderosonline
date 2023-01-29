@@ -157,21 +157,19 @@ function enviaremail($nombre, $email, $telefono, $mensaje) {
     $phpmailer->Port = 2525;
     $phpmailer->Username = '93d53a6bb7e4fb';
     $phpmailer->Password = 'eb3a03c33f1f6b';
-
-    $phpmailer->setFrom('edvin@asaderosonline.com', 'Edvin');
-    $phpmailer->addAddress('edvin@asaderosonline.com', 'Edvin');
-    $phpmailer->isHTML(false);
-    $phpmailer->Subject = 'Mensaje de contacto - Asaderos Online';
+    $phpmailer->setFrom('93d53a6bb7e4fb', 'Asaderos Online');
+    $phpmailer->addAddress('93d53a6bb7e4fb', 'Asaderos Online');
+    $phpmailer->Subject = 'Mensaje de Contacto - Asaderos Online';
     $phpmailer->Body = "De: $nombre \n";
     $phpmailer->Body .= "Correo: $email \n";
     $phpmailer->Body .= "Teléfono: $telefono \n";
     $phpmailer->Body .= "Mensaje: $mensaje";
-
+    $phpmailer->isHTML(false);
+    $phpmailer->CharSet = 'UTF-8';
+    
     if ($phpmailer->send()) {
-        echo 'Message has been sent';
         return true;
     } else {
-        echo 'Message could not be sent.';
         return false;
     }
 }
