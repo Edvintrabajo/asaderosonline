@@ -13,9 +13,23 @@
  */
 
 // CONGIGURACIÓN PARA USAR .ENV EN PRODUCCIÓN EN HEROKU
-use Dotenv\Dotenv;
-$dotenv = Dotenv::createImmutable(__DIR__ . '/..');
-$dotenv->load();
+if (getenv('CLEARDB_DATABASE_URL')) {
+    return [
+        'db' => [
+            'host' => getenv('DB_HOST'),
+            'user' => getenv('DB_USER'),
+            'pass' => getenv('DB_PASS'),
+            'name' => getenv('DB_NAME'),
+            'options' => [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+            ]
+        ]
+    ];
+} else {
+
+    require  __DIR__ .'/../vendor/autoload.php';
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
+    $dotenv->load();
 
     return [
         'db' => [
@@ -28,4 +42,5 @@ $dotenv->load();
             ]
         ]
     ];
+}
 ?>
