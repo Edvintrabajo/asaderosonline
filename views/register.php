@@ -126,7 +126,7 @@ try {
                 <div class="signup-content">
                     <div class="signup-form">
                         <h2 class="form-title">Crear una cuenta</h2>
-                        <form method="POST" action="register.php" class="register-form" id="register-form">
+                        <form method="POST" action="<?= $_SERVER["PHP_SELF"] ?>" class="register-form" id="register-form">
                             <div class="form-group">
                                 <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
                                 <input type="text" name="name" id="name" placeholder="Tu nombre"/>
