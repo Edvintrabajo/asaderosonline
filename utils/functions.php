@@ -159,7 +159,7 @@ function enviaremail($nombre, $email, $telefono, $mensaje) {
     $phpmailer->Password = 'eb3a03c33f1f6b';
 
     $phpmailer->setFrom('edvin@asaderosonline.com', 'Edvin');
-    $phpmailer->addAddress('edvintrabajo@gmail.com', 'Edvin');
+    $phpmailer->addAddress('edvin@asaderosonline.com', 'Edvin');
     $phpmailer->isHTML(false);
     $phpmailer->Subject = 'Mensaje de contacto - Asaderos Online';
     $phpmailer->Body = "De: $nombre \n";
@@ -168,8 +168,10 @@ function enviaremail($nombre, $email, $telefono, $mensaje) {
     $phpmailer->Body .= "Mensaje: $mensaje";
 
     if ($phpmailer->send()) {
+        echo 'Message has been sent';
         return true;
     } else {
+        echo 'Message could not be sent.';
         return false;
     }
 }
