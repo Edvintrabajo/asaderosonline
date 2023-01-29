@@ -12,7 +12,7 @@
  * @since 1.0
  */
 
-require  __DIR__ .'/../vendor/autoload.php';
+// CONGIGURACIÓN PARA USAR .ENV EN PRODUCCIÓN EN HEROKU
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();
 
