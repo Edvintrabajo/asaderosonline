@@ -103,11 +103,7 @@ if(isset($_GET['reservar'])) {
  * Comprobamos si se ha pulsado el boton de submit del formulario de contacto
  */
 if(isset($_POST['contact-submit'])) {
-    if(enviaremail($_POST['contact-name'], $_POST['contact-email'], $_POST['contact-phone'], $_POST['contact-message'])) {
-        echo "Bien";
-    } else {
-        echo "Mal";
-    }
+    enviaremail($_POST['contact-name'], $_POST['contact-email'], $_POST['contact-phone'], $_POST['contact-message']);
 }
 
 
