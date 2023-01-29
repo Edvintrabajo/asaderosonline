@@ -95,6 +95,17 @@ if(isset($_GET['reservar'])) {
     }
 }
 
+
+/**
+ * Comprobamos si se ha pulsado el boton de submit del formulario de contacto
+ */
+if(isset($_POST['contact-submit'])) {
+    include './utils/functions.php';
+
+    enviaremail($_POST['contact-name'], $_POST['contact-email'], $_POST['contact-phone'], $_POST['contact-message']);
+}
+
+
 include "parts/header.php";?>
 
 <!-- Navigation-->
@@ -225,7 +236,7 @@ include "parts/header.php";?>
         <!-- Contacto Section Form-->
         <div class="row justify-content-center">
             <div class="col-lg-8 col-xl-7">
-                <form id="contactForm">
+                <form method="POST" action="<?= $_SERVER["PHP_SELF"] ?>" id="contactForm">
                     <!-- Name input-->
                     <div class="form-floating mb-3">
                         <input class="form-control" id="contact-name" type="text" required placeholder="Introduce tu nombre..."/>
@@ -266,7 +277,7 @@ include "parts/header.php";?>
                     <!-- an error submitting the form-->
                     <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error al enviar el mensaje!</div></div>
                     <!-- Submit Button-->
-                    <button class="btn btn-primary btn-xl" id="submitButton" type="submit">Enviar</button>
+                    <button class="btn btn-primary btn-xl" id="submitButton" type="submit" name="contact-submit">Enviar</button>
                 </form>
             </div>
         </div>
