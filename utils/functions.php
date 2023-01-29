@@ -123,4 +123,37 @@ function validatecrearasadero($nombre, $lugar, $fecha, $descripcion, $precio, $m
     } 
     return $resultado;
 }
+
+/**
+ * Función para enviar un correo desde el formulario de contacto, devuelve true si se envía correctamente y false si no
+ * @param string $nombre
+ * @param string $email
+ * @param string $telefono
+ * @param string $mensaje
+ * @return boolean
+ */
+function enviaremail($nombre, $email, $telefono, $mensaje) {
+    if(empty($nombre) || empty($email) || empty($telefono) || empty($mensaje)) {
+        return false;
+    } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        return false;
+    } else if (!is_numeric($telefono)) {
+        return false;
+    } else if (strlen($nombre) < 3) {
+        return false;
+    } else if (strlen($mensaje) < 10) {
+        return false;
+    }
+    
+    $to = 'edvintrabajo@gmail.com';
+    $subject = 'Mensaje de contacto - Asaderos Online';
+
+    $carta = "De: $nombre \n";
+    $carta .= "Correo: $email \n";
+    $carta .= "Teléfono: $telefono \n";
+    $carta .= "Mensaje: $mensaje";
+
+    mail($to, $subject, $carta);
+    return true;
+}
 ?>
