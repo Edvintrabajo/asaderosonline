@@ -15,6 +15,9 @@
 // Sessión de usuario
 session_start();
 
+// Incluimos las funciones
+include './utils/functions.php';
+
 /**
  * Comprobamos si el usuario ya está logueado, si no es así, lo redirigimos a la página de login
  */
@@ -100,9 +103,11 @@ if(isset($_GET['reservar'])) {
  * Comprobamos si se ha pulsado el boton de submit del formulario de contacto
  */
 if(isset($_POST['contact-submit'])) {
-    include './utils/functions.php';
-
-    enviaremail($_POST['contact-name'], $_POST['contact-email'], $_POST['contact-phone'], $_POST['contact-message']);
+    if(enviaremail($_POST['contact-name'], $_POST['contact-email'], $_POST['contact-phone'], $_POST['contact-message'])) {
+        echo "Bien";
+    } else {
+        echo "Mal";
+    }
 }
 
 
@@ -239,26 +244,26 @@ include "parts/header.php";?>
                 <form method="POST" action="<?= $_SERVER["PHP_SELF"] ?>" id="contactForm">
                     <!-- Name input-->
                     <div class="form-floating mb-3">
-                        <input class="form-control" id="contact-name" type="text" required placeholder="Introduce tu nombre..."/>
+                        <input class="form-control" name="contact-name" id="contact-name" type="text" required placeholder="Introduce tu nombre..."/>
                         <label for="contact-name">Nombre</label>
                         <div class="invalid-feedback">El nombre es obligatorio.</div>
                     </div>
                     <!-- Email address input-->
                     <div class="form-floating mb-3">
-                        <input class="form-control" id="contact-email" type="email" required placeholder="nombre@ejemplo.com"/>
+                        <input class="form-control" name="contact-email" id="contact-email" type="email" required placeholder="nombre@ejemplo.com"/>
                         <label for="contact-email">Correo electrónico</label>
                         <div class="invalid-feedback">El email es obligatorio</div>
                         <div class="invalid-feedback" >Email no válido.</div>
                     </div>
                     <!-- Phone number input-->
                     <div class="form-floating mb-3">
-                        <input class="form-control" id="contact-phone" type="tel" required placeholder="666666666"/>
+                        <input class="form-control" name="contact-phone" id="contact-phone" type="tel" required placeholder="666666666"/>
                         <label for="contact-phone">Número de teléfono</label>
                         <div class="invalid-feedback">El número de teléfono es obligatorio.</div>
                     </div>
                     <!-- Message input-->
                     <div class="form-floating mb-3">
-                        <textarea class="form-control" id="contact-message" type="text" required placeholder="Introduce tu mensaje aquí..." style="height: 10rem"></textarea>
+                        <textarea class="form-control" name="contact-message" id="contact-message" type="text" required placeholder="Introduce tu mensaje aquí..." style="height: 10rem"></textarea>
                         <label for="contact-message">Mensaje</label>
                         <div class="invalid-feedback"">El mensaje es obligatorio.</div>
                     </div>
