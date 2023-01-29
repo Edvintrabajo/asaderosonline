@@ -12,6 +12,9 @@
  * @since 1.0
  */
 
+
+use PHPMailer\PHPMailer\PHPMailer;
+
 /**
  * Función para codificar el HTML
  * @param string $html
@@ -133,6 +136,7 @@ function validatecrearasadero($nombre, $lugar, $fecha, $descripcion, $precio, $m
  * @return boolean
  */
 function enviaremail($nombre, $email, $telefono, $mensaje) {
+
     if(empty($nombre) || empty($email) || empty($telefono) || empty($mensaje)) {
         return false;
     } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -144,16 +148,29 @@ function enviaremail($nombre, $email, $telefono, $mensaje) {
     } else if (strlen($mensaje) < 10) {
         return false;
     }
-    
-    $to = 'edvintrabajo@gmail.com';
-    $subject = 'Mensaje de contacto - Asaderos Online';
+    require_once __DIR__ .'/../vendor/autoload.php';
 
-    $carta = "De: $nombre \n";
-    $carta .= "Correo: $email \n";
-    $carta .= "Teléfono: $telefono \n";
-    $carta .= "Mensaje: $mensaje";
+    $phpmailer = new PHPMailer();
+    $phpmailer->isSMTP();
+    $phpmailer->Host = 'smtp.mailtrap.io';
+    $phpmailer->SMTPAuth = true;
+    $phpmailer->Port = 2525;
+    $phpmailer->Username = '93d53a6bb7e4fb';
+    $phpmailer->Password = 'eb3a03c33f1f6b';
 
-    mail($to, $subject, $carta);
-    return true;
+    $phpmailer->setFrom('edvin@asaderosonline.com', 'Edvin');
+    $phpmailer->addAddress('edvintrabajo@gmail.com', 'Edvin');
+    $phpmailer->isHTML(false);
+    $phpmailer->Subject = 'Mensaje de contacto - Asaderos Online';
+    $phpmailer->Body = "De: $nombre \n";
+    $phpmailer->Body .= "Correo: $email \n";
+    $phpmailer->Body .= "Teléfono: $telefono \n";
+    $phpmailer->Body .= "Mensaje: $mensaje";
+
+    if ($phpmailer->send()) {
+        return true;
+    } else {
+        return false;
+    }
 }
 ?>
