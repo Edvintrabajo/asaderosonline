@@ -13,7 +13,8 @@
  */
 
 // CONGIGURACIÓN PARA USAR .ENV EN PRODUCCIÓN EN HEROKU
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
+use Dotenv\Dotenv;
+$dotenv = Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();
 
     return [
