@@ -65,7 +65,7 @@ Este proyecto es para clase, no es un proyecto real.
 [MIT](https://choosealicense.com/licenses/mit/)
 
 ## 📌 Autor
-- [Edvin Freyer Ortega](https://github.com/Edvintrabajo)
+[Edvin Freyer Ortega](https://github.com/Edvintrabajo)
 
 ## 📌 Documentación
 [Documentación](https://asaderosonline.herokuapp.com/docs/html/index.html)
