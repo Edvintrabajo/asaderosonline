@@ -1,11 +1,11 @@
 var indexSectionsWithContent =
 {
-  0: "$acefhilmrstv",
+  0: "$acefhilmrstv📌",
   1: "acfmsv",
   2: "acefhilmrv",
-  3: "cv",
+  3: "cev",
   4: "$ceirt",
-  5: "a"
+  5: "m📌"
 };
 
 var indexSectionNames =

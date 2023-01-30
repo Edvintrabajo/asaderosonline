@@ -20,6 +20,10 @@ DB_NAME=asaderosonline
 5. Iniciar el servidor con `php -S localhost:8000` (Este comando lo tienes que ejecutar en la raiz del proyecto)
 6. Abrir el navegador en la url `http://localhost:8000`
 
+Hay que tener en cuenta que para que funcione el proyecto, tienes que tener instalado PHP, Composer GIT y MySQL.
+
+También hay que tener la base de datos activa con xaamp o wamp, o cualquier otro programa que te permita tener una base de datos activa.
+
 ## 📌 Uso de la aplicación (no administrador)
 1. Para acceder a la página principal, hay que rellenar el formulario de registro e iniciar sesión.
 2. En la página principal se muestran los asaderos que se encuentran en la base de datos.
@@ -56,3 +60,9 @@ Las contribuciones son bienvenidas. Para contribuir, sigue los siguientes pasos:
 
 ## 📌 Nota
 Este proyecto es para clase, no es un proyecto real.
+
+## 📌 Licencia
+[MIT](https://choosealicense.com/licenses/mit/)
+
+## 📌 Autor
+- [Edvin Freyer Ortega](https://github.com/Edvintrabajo)

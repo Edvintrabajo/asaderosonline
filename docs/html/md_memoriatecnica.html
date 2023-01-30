@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.6"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Asaderos Online: Memoria técnica de la aplicación</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Asaderos Online
+   </div>
+   <div id="projectbrief">Gestor de asaderos online</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.9.6 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Buscar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('md_memoriatecnica.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div><div class="header">
+  <div class="headertitle"><div class="title">Memoria técnica de la aplicación </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><h1><a class="anchor" id="autotoc_md1"></a>
+Introducción</h1>
+<p>La temática de este proyecto es sobre una aplicación web para la gestión de asaderos online.</p>
+<p>Esta aplicación web permite a los usuarios registrarse, iniciar sesión, ver los asaderos disponibles, inscribirse en un asadero, ver los asaderos en los que se ha inscrito, eliminar una reserva, enviar un mensaje al administrador mediante formulario de contacto.</p>
+<p>Hay diferentes roles como el de administrador que te permite acceder a un panel de administrador. En el panel de administrador se pueden ver, crear, editar y eliminar asaderos, ver y eliminar reservas y ver y eliminar usuarios.</p>
+<p>El autor de la aplicación es <a href="https://github.com/Edvintrabajo">Edvin Freyer Ortega</a></p>
+<h1><a class="anchor" id="autotoc_md2"></a>
+Analisis de la aplicación</h1>
+<p>En el analisis de la aplicación se ha realizado un diagrama de flujo de la aplicación y un diagrama entidad-relación.</p>
+<h2><a class="anchor" id="autotoc_md3"></a>
+Diagrama de flujo</h2>
+<p><img src="https://i.imgur.com/RULxNRb.png" alt="" class="inline"/></p>
+<p>Como se puede ver en el diagrama de flujo, la aplicación consta de 3 partes: la parte pública, la parte privada y la parte de administrador.</p>
+<p>La parte pública es la que se puede ver sin estar registrado en la aplicación. En esta parte se puede ver la página de registro y la página de inicio de sesión.</p>
+<p>La parte privada es la que se puede ver una vez se ha iniciado sesión. En esta parte se puede ver la página de inicio, en donde se puede ver los asaderos que existen en la base de datos, también está disponible un formulario de contacto, en donde se puede enviar un mensaje al administrador. También hay un boton de 'Mis reservas' que te lleva a la página de mis reservas, en donde se puede ver las reservas realizadas por dicho usuario y eliminarlas si así lo desea.</p>
+<p>La parte administrador tiene disponible todo lo de la parte privada del no administrador, pero también tiene un boton que al hacer click al avatar, se accede al panel de administrador, en donde se puede ver los asaderos que existen en la base de datos, también se puede crear, editar y eliminar asaderos, también se puede ver las reservas que existen en la base de datos y eliminarlas si así lo desea. También se puede ver los usuarios que existen en la base de datos y eliminarlos si así lo desea.</p>
+<h2><a class="anchor" id="autotoc_md4"></a>
+Diagrama Entidad-Relación</h2>
+<p><img src="https://i.imgur.com/ObHR9no.png" alt="" class="inline"/></p>
+<p>Como se puede ver en el diagrama entidad relación, la aplicación consta de 3 entidades: asadero, reserva, y usuario.</p>
+<p>La entidad asadero tiene una relación de uno a muchos con la entidad reserva.</p>
+<p>La entidad usuario tiene una relación de uno a muchos con la entidad reserva.</p>
+<p>La entidad reserva tiene una relación de uno a uno con la entidad asadero.</p>
+<p>La entidad reserva tiene una relación de uno a uno con la entidad usuario.</p>
+<h1><a class="anchor" id="autotoc_md5"></a>
+Diseño e implementación</h1>
+<h2><a class="anchor" id="autotoc_md6"></a>
+Refactorización</h2>
+<p>La principal refactorización que se ha realizado en este proyecto es la de la parte de las funciones, se ha creado un archivo llamado <a class="el" href="functions_8php.html">functions.php</a> que está dentro de la carpeta utils.</p>
+<p>En este archivo se han creado todas las funciones que se han utilizado en el proyecto, como por ejemplo la función de codificar el html, la función para validar los datos del registro, la función para validar los datos al crear un asadero y por último la función para enviar un correo electrónico.</p>
+<p>También se ha refactorizado la parte de la base de datos, se ha creado un archivo llamado <a class="el" href="config_8php.html">config.php</a> que está dentro de la carpeta database.</p>
+<p>En este archivo se han creado las constantes que se han utilizado para la conexión a la base de datos, utilizando variables de entorno.</p>
+<p>También se ha refactorizado la parte de las plantillas, dentro de la carpeta llamada parts se han creado los archivos <a class="el" href="adminheader_8php.html">adminheader.php</a>, <a class="el" href="header_8php.html">header.php</a> y <a class="el" href="footer_8php.html">footer.php</a>, en donde se ha creado el código html que se repite en varias páginas.</p>
+<h2><a class="anchor" id="autotoc_md7"></a>
+Principales aspectos de interés</h2>
+<p>Los principales aspectos de interés de este proyecto son la parte de la base de datos, la parte de las plantillas y la parte de las funciones.</p>
+<p>La parte de la base de datos es importante porque es la parte que se encarga de guardar los datos de la aplicación, en este proyecto se ha utilizado una base de datos en MySQL.</p>
+<p>La parte de las plantillas es importante porque es la parte que se encarga de mostrar los datos de la aplicación, en este proyecto se ha utilizado HTML, CSS y JavaScript.</p>
+<p>La parte de las funciones es importante porque es la parte que se encarga de procesar los datos de la aplicación, también es la parte directamente conectada con la base de datos, permitiendonos así modificar aspectos del servidor deade la web, en este proyecto se ha utilizado PHP.</p>
+<h1><a class="anchor" id="autotoc_md8"></a>
+Problemas encontrados</h1>
+<p>Los principales problemas encontrados en este proyecto han sido los siguientes:</p>
+<ul>
+<li>Al querer desplegarla en Heroku, no se podía desplegar porque no se podía conectar a la base de datos, esto se debía a que en Heroku no funcionaba el phpdotenv, por lo que se tuvo que cambiar el archivo <a class="el" href="config_8php.html">config.php</a> para que diferenciara la manera de declarar las variables de entorno dependiendo del entorno que esté (producción o desarrollo), para que así se pueda conectar a la base de datos de Heroku.</li>
+<li>Al querer añadir el formulario de contacto, tuve que buscar información sobre como enviar un correo electrónico desde PHP, ya que no sabía como hacerlo, pero al final lo pude hacer, usando el PHPMailer y usando mailtrap como servidor de correo.</li>
+<li>Al querer encriptar las contraseñas, tuve que buscar información sobre como encriptar contraseñas en PHP, ya que no sabía como hacerlo, pero al final lo pude hacer, usando la función password_hash() y password_verify().</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md9"></a>
+Trabajo futuro</h1>
+<p>Para el futuro trabajo que se podría hacer en este proyecto es el siguiente:</p>
+<ul>
+<li>Añadir un sistema de comentarios para los asaderos, para que así los usuarios puedan dejar comentarios sobre los asaderos, y así promover la comunidad de la página.</li>
+<li>Añadir un sistema de valoraciones para los asaderos, para que así los usuarios puedan valorar los asaderos, después de haber ido a ellos, y así poder tener una idea de como ha sido el asadero.</li>
+<li>Añadir un sistema de notificaciones para los asaderos, para que así los usuarios puedan recibir notificaciones cuando se crea un asaderos o hay una modificación, y así los usuarios estar al día de los asaderos.</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md10"></a>
+Conclusiones</h1>
+<p>Mi conclusión principal es que he aprendido mucho sobre PHP, ya que es la primera vez que lo utilizo para un proyecto tan grande, también he aprendido mucho sobre la parte de conectar PHP con la base de datos y con el tratado de datos que devuelve estas mismas.</p>
+<p>También he aprendido mucho sobre el despliegue de una aplicación web, ya que es la primera vez que despliego una aplicación web en Heroku, teniendo que aprender a usar un poquito el CLI de Heroku, también el clearDB, y adaptar el proyecto para que se pueda desplegar en Heroku sin fallos.</p>
+<p>También he aprendido sobre como organizar mejor un proyecto, creando carpetas para cada parte del proyecto, y creando archivos para refactorizar el código, y así tener un código más limpio y ordenado.</p>
+<h1><a class="anchor" id="autotoc_md11"></a>
+Como ejecutar el proyecto</h1>
+<ol type="1">
+<li>Clonar el repositorio <code>git clone <a href="https://github.com/Edvintrabajo/asaderosonline.git">https://github.com/Edvintrabajo/asaderosonline.git</a></code></li>
+<li>Crear la base de datos, el archivo sql está en 'database/asaderos-online.sql'</li>
+<li>Crear el archivo .env en el directorio raiz del proyecto con las variables de entorno para la conexión a la base de datos, un ejemplo del contenido del archivo .env sería el siguiente: <div class="fragment"><div class="line">DB_HOST=localhost</div>
+<div class="line">DB_USER=root</div>
+<div class="line">DB_PASS=</div>
+<div class="line">DB_NAME=asaderosonline</div>
+</div><!-- fragment --></li>
+<li>Instalar las dependencias con <code>composer install</code> (Este comando lo tienes que ejecutar en la raiz del proyecto)</li>
+<li>Iniciar el servidor con <code>php -S localhost:8000</code> (Este comando lo tienes que ejecutar en la raiz del proyecto)</li>
+<li>Abrir el navegador en la url <code><a href="http://localhost:8000">http://localhost:8000</a></code></li>
+</ol>
+<p>Hay que tener en cuenta que para que funcione el proyecto, tienes que tener instalado PHP, Composer, GIT y MySQL.</p>
+<p>También hay que tener la base de datos activa con xaamp o wamp, o cualquier otro programa que te permita tener una base de datos activa. </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+  </ul>
+</div>
+</body>
+</html>

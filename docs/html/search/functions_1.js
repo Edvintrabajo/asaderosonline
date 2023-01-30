@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['validatecrearasadero_0',['validatecrearasadero',['../functions_8php.html#af256bfd978b9f1d60be6c057c21ec97c',1,'functions.php']]],
-  ['validateregister_1',['validateregister',['../functions_8php.html#a44db8bf9e291399ca34e502660ca34d7',1,'functions.php']]]
+  ['enviaremail_0',['enviaremail',['../functions_8php.html#a29a1fc8a3a0ee896353c6bc84432ba52',1,'functions.php']]]
 ];

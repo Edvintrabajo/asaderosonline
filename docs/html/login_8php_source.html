@@ -98,7 +98,7 @@ $(document).ready(function(){initNavTree('login_8php_source.html',''); initResiz
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>session_start();</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keywordflow">if</span>(isset($_SESSION[<span class="stringliteral">&#39;usuario&#39;</span>])) {</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    header(<span class="stringliteral">&quot;location: index.php&quot;</span>);</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    header(<span class="stringliteral">&quot;location: ../index.php&quot;</span>);</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>}</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keywordflow">try</span> {</div>
@@ -120,7 +120,7 @@ $(document).ready(function(){initNavTree('login_8php_source.html',''); initResiz
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        </div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keywordflow">if</span> ($usuario &amp;&amp; password_verify($_POST[<span class="stringliteral">&quot;your_pass&quot;</span>], $usuario[<span class="stringliteral">&#39;contrasena&#39;</span>])) {</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            $_SESSION[<span class="stringliteral">&#39;usuario&#39;</span>] = $usuario;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            header(<span class="stringliteral">&quot;Location: index.php&quot;</span>);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            header(<span class="stringliteral">&quot;Location: ../index.php&quot;</span>);</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        } <span class="keywordflow">else</span> {</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            $resultado[<span class="stringliteral">&#39;error&#39;</span>] = <span class="keyword">true</span>;</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>            $resultado[<span class="stringliteral">&#39;mensaje&#39;</span>] = <span class="stringliteral">&#39;Datos introducidos incorrectos&#39;</span>;</div>
@@ -157,7 +157,7 @@ $(document).ready(function(){initNavTree('login_8php_source.html',''); initResiz
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;main&quot;</span>&gt;</div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        &lt;?php</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="login_8php.html#a7507ccb6fba27fb02420a3d51579fa54">   92</a></span>        <span class="keywordflow">if</span>(isset($resultado) &amp;&amp; $resultado[<span class="stringliteral">&#39;error&#39;</span>]) {</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        <span class="keywordflow">if</span>(isset($resultado) &amp;&amp; $resultado[<span class="stringliteral">&#39;error&#39;</span>]) {</div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        ?&gt;</div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>            &lt;!-- MENSAJE DE ERROR --&gt;</div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>            &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;container&quot;</span>&gt;</div>
@@ -180,7 +180,7 @@ $(document).ready(function(){initNavTree('login_8php_source.html',''); initResiz
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>                    &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;signin-form&quot;</span>&gt;</div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>                        &lt;h2 <span class="keyword">class</span>=<span class="stringliteral">&quot;form-title&quot;</span>&gt;Iniciar sesión&lt;/h2&gt;</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>                        &lt;form method=<span class="stringliteral">&quot;POST&quot;</span> action=<span class="stringliteral">&quot;&lt;?php echo $_SERVER[&#39;PHP_SELF&#39;];?&gt;&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;register-form&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;login-form&quot;</span>&gt;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>                        &lt;form method=<span class="stringliteral">&quot;POST&quot;</span> action=<span class="stringliteral">&quot;&lt;?= $_SERVER[&quot;</span>PHP_SELF<span class="stringliteral">&quot;] ?&gt;&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;register-form&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;login-form&quot;</span>&gt;</div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>                            &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;form-group&quot;</span>&gt;</div>
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>                                &lt;label <span class="keywordflow">for</span>=<span class="stringliteral">&quot;your_email&quot;</span>&gt;&lt;i <span class="keyword">class</span>=<span class="stringliteral">&quot;zmdi zmdi-email&quot;</span>&gt;&lt;/i&gt;&lt;/label&gt;</div>
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>                                &lt;input type=<span class="stringliteral">&quot;email&quot;</span> name=<span class="stringliteral">&quot;your_email&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;your_email&quot;</span> placeholder=<span class="stringliteral">&quot;Tu email&quot;</span>/&gt;</div>
