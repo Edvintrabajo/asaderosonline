@@ -7,3 +7,38 @@ deny from all
 order allow,deny
 deny from all
 </Files>
+
+<Files functions.php>
+order allow,deny
+deny from all
+</Files>
+
+<Files header.php>
+order allow,deny
+deny from all
+</Files>
+
+<Files adminheader.php>
+order allow,deny
+deny from all
+</Files>
+
+<Files footer.php>
+order allow,deny
+deny from all
+</Files>
+
+<Files config.php>
+order allow,deny
+deny from all
+</Files>
+
+<Files instalardb.php>
+order allow,deny
+deny from all
+</Files>
+
+<Files asaderos-online.sql>
+order allow,deny
+deny from all
+</Files>
