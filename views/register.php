@@ -19,11 +19,7 @@ session_start();
  * Comprobamos si el usuario ya está logueado, si es así, lo redirigimos a la página principal
  */
 if(isset($_SESSION['usuario'])) {
-    if(!empty($_SESSION['usuario']['id'])) {
-        header("location: ../index.php");
-    } else {
-        session_destroy();
-    }
+    header("location: ../index.php");
 }
 
 /**
