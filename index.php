@@ -26,6 +26,7 @@ if(!isset($_SESSION['usuario'])){
 }
 
 if(empty($_SESSION['usuario']['id'])) {
+    session_destroy();
     header("location: ./views/login.php");
 }
 
