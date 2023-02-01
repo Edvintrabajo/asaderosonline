@@ -106,9 +106,9 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a349256210d44a2abc0f34f93ce8c0d3c"><td class="memItemLeft" align="right" valign="top">if(!isset( $_SESSION[ 'usuario'])) if(isset($_GET['cerrarsession'])) if(isset( $_GET[ 'reservar']))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="index_8php.html#a349256210d44a2abc0f34f93ce8c0d3c">if</a> (isset( $_POST[ 'contact-submit']))</td></tr>
-<tr class="separator:a349256210d44a2abc0f34f93ce8c0d3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c0a595cd02690da08f5bc97469caf2f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="index_8php.html#a349256210d44a2abc0f34f93ce8c0d3c">if</a>(! $_SESSION['usuario']['admin'])&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="index_8php.html#a1c0a595cd02690da08f5bc97469caf2f">else</a> {</td></tr>
+<tr class="memitem:a82bbb28bb6ce92ec963ba3ab860197b0"><td class="memItemLeft" align="right" valign="top">if(!isset($_SESSION['usuario'])) if(empty( $_SESSION[ 'usuario'][ 'id'])) if(isset($_GET['cerrarsession'])) if(isset( $_GET[ 'reservar']))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="index_8php.html#a82bbb28bb6ce92ec963ba3ab860197b0">if</a> (isset( $_POST[ 'contact-submit']))</td></tr>
+<tr class="separator:a82bbb28bb6ce92ec963ba3ab860197b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c0a595cd02690da08f5bc97469caf2f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="index_8php.html#a82bbb28bb6ce92ec963ba3ab860197b0">if</a>(! $_SESSION['usuario']['admin'])&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="index_8php.html#a1c0a595cd02690da08f5bc97469caf2f">else</a> {</td></tr>
 <tr class="separator:a1c0a595cd02690da08f5bc97469caf2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a786878eb3cefa0637e28f3d2f841797a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="index_8php.html#a786878eb3cefa0637e28f3d2f841797a">if</a> (isset( $resultado) &amp;&amp;$resultado[ 'error']) = $_SERVER[&quot;PHP_SELF&quot;]</td></tr>
 <tr class="separator:a786878eb3cefa0637e28f3d2f841797a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -121,24 +121,24 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="index_8php.html#a349256210d44a2abc0f34f93ce8c0d3c">if</a> (! $_SESSION[ 'usuario'][ 'admin']) else {</td>
+          <td class="memname"><a class="el" href="index_8php.html#a82bbb28bb6ce92ec963ba3ab860197b0">if</a> (! $_SESSION[ 'usuario'][ 'admin']) else {</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <p>Si el usuario no es admin, se muestra el avatar normal, si es admin, se muestra el avatar con link a admin </p>
 
-<p class="definition">Definición en la línea <a class="el" href="index_8php_source.html#l00144">144</a> del archivo <a class="el" href="index_8php_source.html">index.php</a>.</p>
+<p class="definition">Definición en la línea <a class="el" href="index_8php_source.html#l00149">149</a> del archivo <a class="el" href="index_8php_source.html">index.php</a>.</p>
 
 </div>
 </div>
-<a id="a349256210d44a2abc0f34f93ce8c0d3c" name="a349256210d44a2abc0f34f93ce8c0d3c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a349256210d44a2abc0f34f93ce8c0d3c">&#9670;&#160;</a></span>if <span class="overload">[1/2]</span></h2>
+<a id="a82bbb28bb6ce92ec963ba3ab860197b0" name="a82bbb28bb6ce92ec963ba3ab860197b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82bbb28bb6ce92ec963ba3ab860197b0">&#9670;&#160;</a></span>if <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">if(!isset($_SESSION['usuario'])) if(isset( $_GET[ 'cerrarsession'])) if(isset($_GET['reservar'])) if(isset($_POST['contact-submit'])) </td>
+          <td class="memname">if(!isset( $_SESSION[ 'usuario'])) if(empty($_SESSION['usuario']['id'])) if(isset( $_GET[ 'cerrarsession'])) if(isset($_GET['reservar'])) if(isset($_POST['contact-submit'])) </td>
           <td>(</td>
           <td class="paramtype">isset( $_POST[ 'contact-submit'])&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -148,7 +148,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 <p>Comprobamos si el usuario ya está logueado, si no es así, lo redirigimos a la página de login Comprobamos si se ha pulsado el botón de cerrar sesión, si es así, lo redirigimos a la página de login y destruimos la sesión Comprobamos si se ha pulsado el botón de reservar Comprobamos si se ha pulsado el boton de submit del formulario de contacto </p>
 
-<p class="definition">Definición en la línea <a class="el" href="index_8php_source.html#l00105">105</a> del archivo <a class="el" href="index_8php_source.html">index.php</a>.</p>
+<p class="definition">Definición en la línea <a class="el" href="index_8php_source.html#l00110">110</a> del archivo <a class="el" href="index_8php_source.html">index.php</a>.</p>
 
 </div>
 </div>
@@ -168,7 +168,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definición en la línea <a class="el" href="index_8php_source.html#l00181">181</a> del archivo <a class="el" href="index_8php_source.html">index.php</a>.</p>
+<p class="definition">Definición en la línea <a class="el" href="index_8php_source.html#l00186">186</a> del archivo <a class="el" href="index_8php_source.html">index.php</a>.</p>
 
 </div>
 </div>

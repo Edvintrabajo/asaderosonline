@@ -25,32 +25,18 @@
 var NAVTREE =
 [
   [ "Asaderos Online", "index.html", [
-    [ "Memoria técnica de la aplicación", "md_memoriatecnica.html", [
-      [ "Introducción", "md_memoriatecnica.html#autotoc_md1", null ],
-      [ "Analisis de la aplicación", "md_memoriatecnica.html#autotoc_md2", [
-        [ "Diagrama de flujo", "md_memoriatecnica.html#autotoc_md3", null ],
-        [ "Diagrama Entidad-Relación", "md_memoriatecnica.html#autotoc_md4", null ]
-      ] ],
-      [ "Diseño e implementación", "md_memoriatecnica.html#autotoc_md5", [
-        [ "Refactorización", "md_memoriatecnica.html#autotoc_md6", null ],
-        [ "Principales aspectos de interés", "md_memoriatecnica.html#autotoc_md7", null ]
-      ] ],
-      [ "Problemas encontrados", "md_memoriatecnica.html#autotoc_md8", null ],
-      [ "Trabajo futuro", "md_memoriatecnica.html#autotoc_md9", null ],
-      [ "Conclusiones", "md_memoriatecnica.html#autotoc_md10", null ],
-      [ "Como ejecutar el proyecto", "md_memoriatecnica.html#autotoc_md11", null ]
-    ] ],
     [ "📌 Asaderos Online", "md__r_e_a_d_m_e.html", [
-      [ "📝 Descripción", "md__r_e_a_d_m_e.html#autotoc_md13", null ],
-      [ "🔸 Captura de la página principal", "md__r_e_a_d_m_e.html#autotoc_md14", null ],
-      [ "📋 Instalación", "md__r_e_a_d_m_e.html#autotoc_md15", null ],
-      [ "📌 Uso de la aplicación (no administrador)", "md__r_e_a_d_m_e.html#autotoc_md16", null ],
-      [ "📌 Uso de la aplicación (administrador)", "md__r_e_a_d_m_e.html#autotoc_md17", null ],
-      [ "📌 Tecnologías utilizadas", "md__r_e_a_d_m_e.html#autotoc_md18", null ],
-      [ "📌 Contribuciones", "md__r_e_a_d_m_e.html#autotoc_md19", null ],
-      [ "📌 Nota", "md__r_e_a_d_m_e.html#autotoc_md20", null ],
-      [ "📌 Licencia", "md__r_e_a_d_m_e.html#autotoc_md21", null ],
-      [ "📌 Autor", "md__r_e_a_d_m_e.html#autotoc_md22", null ]
+      [ "📝 Descripción", "md__r_e_a_d_m_e.html#autotoc_md1", null ],
+      [ "🔸 Captura de la página principal", "md__r_e_a_d_m_e.html#autotoc_md2", null ],
+      [ "📋 Instalación", "md__r_e_a_d_m_e.html#autotoc_md3", null ],
+      [ "📌 Uso de la aplicación (no administrador)", "md__r_e_a_d_m_e.html#autotoc_md4", null ],
+      [ "📌 Uso de la aplicación (administrador)", "md__r_e_a_d_m_e.html#autotoc_md5", null ],
+      [ "📌 Tecnologías utilizadas", "md__r_e_a_d_m_e.html#autotoc_md6", null ],
+      [ "📌 Contribuciones", "md__r_e_a_d_m_e.html#autotoc_md7", null ],
+      [ "📌 Nota", "md__r_e_a_d_m_e.html#autotoc_md8", null ],
+      [ "📌 Licencia", "md__r_e_a_d_m_e.html#autotoc_md9", null ],
+      [ "📌 Autor", "md__r_e_a_d_m_e.html#autotoc_md10", null ],
+      [ "📌 Documentación", "md__r_e_a_d_m_e.html#autotoc_md11", null ]
     ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Lista de 'namespaces'", "namespaces.html", "namespaces_dup" ]
