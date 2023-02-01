@@ -25,6 +25,10 @@ if(!isset($_SESSION['usuario'])){
     header("location: ./views/login.php");
 }
 
+if(empty($_SESSION['usuario']['id'])) {
+    header("location: ./views/login.php");
+}
+
 /**
  * Comprobamos si se ha pulsado el botón de cerrar sesión, si es así, lo redirigimos a la página de login y destruimos la sesión
  */
