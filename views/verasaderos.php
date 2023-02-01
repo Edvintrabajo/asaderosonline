@@ -13,18 +13,6 @@
  */
 
 /**
- * Comprobamos si el usuario ya está logueado, si no es así, lo redirigimos a la página de login
- */
-if(!isset($_SESSION['usuario'])){
-    header("location: login.php");
-}
-
-if(empty($_SESSION['usuario']['id'])) {
-    session_destroy();
-    header("location: login.php");
-}
-
-/**
  * Iniciamos la conexión a la base de datos
  * Listamos los asaderos
  */
