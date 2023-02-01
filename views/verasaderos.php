@@ -12,6 +12,17 @@
  * @since 1.0
  */
 
+/**
+ * Comprobamos si el usuario ya está logueado, si no es así, lo redirigimos a la página de login
+ */
+if(!isset($_SESSION['usuario'])){
+    header("location: ./views/login.php");
+}
+
+if(empty($_SESSION['usuario']['id'])) {
+    session_destroy();
+    header("location: ./views/login.php");
+}
 
 /**
  * Iniciamos la conexión a la base de datos
