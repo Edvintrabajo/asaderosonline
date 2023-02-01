@@ -22,6 +22,11 @@ if(!isset($_SESSION['usuario'])) {
     header("location: login.php");
 } 
 
+if(empty($_SESSION['usuario']['id'])) {
+    session_destroy();
+    header("location: login.php");
+}
+
 /**
  * Iniciamos la conexión a la base de datos y manejamos los errores
  * Listamos las reservas del usuario

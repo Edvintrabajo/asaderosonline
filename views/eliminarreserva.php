@@ -22,6 +22,11 @@ if(!isset($_SESSION['usuario'])) {
     header("location: login.php");
 }
 
+if(empty($_SESSION['usuario']['id'])) {
+    session_destroy();
+    header("location: login.php");
+}
+
 /**
  * Iniciamos la conexión a la base de datos
  * Comprobamos si se ha pasado el id de la reserva por GET
